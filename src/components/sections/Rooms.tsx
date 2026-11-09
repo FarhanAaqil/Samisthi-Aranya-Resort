@@ -18,6 +18,10 @@ export function Rooms() {
       <RoomsShowcase rooms={ROOM_CATEGORIES} />
 
       <div
+        role="region"
+        aria-label="All room rates"
+        // Focusable so keyboard users can scroll the table sideways on narrow screens.
+        tabIndex={0}
         className="mt-12 overflow-x-auto rounded-[1.75rem] border border-wine/10 bg-petal shadow-soft"
         data-reveal
       >

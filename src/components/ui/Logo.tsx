@@ -77,7 +77,7 @@ export function Logo({ variant = 'full', tone = 'light', className }: LogoProps)
         <LogoMark tone={tone} className="h-20 w-auto" />
         <span className={cn('mt-3 font-display text-3xl font-semibold tracking-[0.3em]', name)}>
           SAMISTHI
-        </span>
+        </span>{' '}
         <span className={cn('mt-1 text-[0.68rem] font-semibold tracking-[0.42em]', sub)}>
           ARANYA RESORTS
         </span>
@@ -91,7 +91,7 @@ export function Logo({ variant = 'full', tone = 'light', className }: LogoProps)
       <span className="flex flex-col leading-none">
         <span className={cn('font-display text-xl font-semibold tracking-[0.24em]', name)}>
           SAMISTHI
-        </span>
+        </span>{' '}
         <span className={cn('mt-1 text-[0.6rem] font-semibold tracking-[0.34em]', sub)}>
           ARANYA RESORTS
         </span>
