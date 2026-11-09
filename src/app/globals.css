@@ -1,121 +1,120 @@
 @import 'tailwindcss';
 
+/*
+ * Design tokens for Samisthi Aranya Resorts.
+ *
+ * The palette keeps the brand's wine, rose and gold, but lets them accent a warm
+ * blush-sand canvas instead of an obsidian one. Contrast ratios (WCAG 2.1):
+ *   ink on sand 11.9 | ink-soft on sand 7.4 | wine on sand 8.3 | sand on wine 8.3
+ *   gold-deep on sand 5.0 | gold-light on wine-deep 7.0 | rose on wine-deep 6.3
+ * Plain gold is decoration only (rules, icons) and never carries text.
+ */
 @theme {
   --color-*: initial;
   --color-transparent: transparent;
   --color-current: currentColor;
-  --color-obsidian: #120d0f;
+
+  --color-sand: #f5e6dc;
+  --color-petal: #fbf0e9;
+  --color-clay: #ebd2c5;
+  --color-ink: #3a2230;
+  --color-ink-soft: #5c4150;
   --color-wine: #682e4e;
+  --color-wine-deep: #4a1f38;
   --color-rose: #e79ab2;
-  --color-palerose: #f6e7ec;
-  --color-gold: #c9a227;
-  --font-serif: var(--font-cormorant), Georgia, serif;
-  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+  --color-rose-soft: #f2c4d2;
+  --color-gold: #b8892b;
+  --color-gold-deep: #7f5c12;
+  --color-gold-light: #d9b565;
+
+  --font-display: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+
+  --radius-card: 1.5rem;
+
+  --shadow-soft: 0 1px 2px rgb(58 34 48 / 0.05), 0 14px 34px -16px rgb(58 34 48 / 0.22);
+  --shadow-lift: 0 2px 4px rgb(58 34 48 / 0.06), 0 26px 50px -22px rgb(58 34 48 / 0.32);
+
+  --ease-out-soft: cubic-bezier(0.22, 0.7, 0.2, 1);
 }
 
-:root {
-  --color-obsidian: #120d0f;
-  --color-wine: #682e4e;
-  --color-rose: #e79ab2;
-  --color-palerose: #f6e7ec;
-  --color-gold: #c9a227;
-}
-
-html {
-  scroll-behavior: smooth;
-  background-color: #120d0f;
-  color: #f6e7ec;
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer base {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    background-color: var(--color-sand);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+
+  body {
+    background-color: var(--color-sand);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
-}
 
-body {
-  background-color: #120d0f;
-  color: #f6e7ec;
-  overflow-x: hidden;
-}
+  ::selection {
+    background: var(--color-rose-soft);
+    color: var(--color-wine-deep);
+  }
 
-/* Custom subtle scrollbars in Obsidian Rose palette */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #120d0f;
-}
-::-webkit-scrollbar-thumb {
-  background: #682e4e;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #e79ab2;
-}
+  :focus-visible {
+    outline: 2px solid var(--color-wine);
+    outline-offset: 3px;
+    border-radius: 0.375rem;
+  }
 
-/* Cinematic motion: restrained reveal, a slow hero drift, and tactile hover depth. */
-:root {
-  --scroll-progress: 0%;
-  --hero-parallax-y: 0px;
-}
+  .on-dark :focus-visible {
+    outline-color: var(--color-gold-light);
+  }
 
-.hero-parallax {
-  transform: translate3d(0, var(--hero-parallax-y), 0) scale(1.08);
-  transform-origin: center center;
-  will-change: transform;
-}
-
-.scroll-reveal {
-  opacity: 0;
-  transform: translate3d(0, 28px, 0);
-  transition:
-    opacity 760ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.scroll-reveal.is-revealed {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-.facility-visual {
-  background:
-    radial-gradient(circle at 78% 18%, rgba(201, 162, 39, 0.19), transparent 27%),
-    radial-gradient(circle at 12% 90%, rgba(231, 154, 178, 0.12), transparent 32%),
-    linear-gradient(135deg, rgba(104, 46, 78, 0.72) 0%, #120d0f 56%, rgba(201, 162, 39, 0.08) 100%);
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .gallery-card-image {
-    transition: transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-parallax {
-    transform: none !important;
-    will-change: auto;
+@layer components {
+  /* Quiet, warm scrollbars on desktop. */
+  @media (pointer: fine) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-wine) var(--color-clay);
+    }
   }
-  .scroll-reveal,
-  .scroll-reveal.is-revealed {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+
+  /* Elements below the fold fade up once; set up by the Reveal component. */
+  .reveal-hidden {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+
+  [data-reveal] {
+    transition:
+      opacity 700ms var(--ease-out-soft),
+      transform 800ms var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal-hidden {
+      opacity: 1;
+      transform: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
