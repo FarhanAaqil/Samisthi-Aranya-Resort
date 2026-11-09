@@ -95,11 +95,11 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button href={telHref} variant="secondary" className="hidden sm:inline-flex">
+          <Button href={telHref} variant="secondary" className="max-sm:hidden">
             <Phone className="size-4" aria-hidden="true" />
             Call
           </Button>
-          <Button href={whatsappHref()} external className="hidden sm:inline-flex">
+          <Button href={whatsappHref()} external className="max-sm:hidden">
             <MessageCircle className="size-4" aria-hidden="true" />
             WhatsApp
           </Button>
