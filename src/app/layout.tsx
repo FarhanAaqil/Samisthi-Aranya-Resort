@@ -18,11 +18,11 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (
-  process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
-    : undefined
-);
+    : undefined);
 
 export const metadata: Metadata = {
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
@@ -58,7 +58,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     slogan: RESORT_CONFIG.tagline,
     ...(siteUrl ? { url: siteUrl } : {}),
     telephone: '+91-79815-83940',
-    image: siteUrl ? `${siteUrl}/images/hero/IMG-20261107-WA0040(1).webp` : '/images/hero/IMG-20261107-WA0040(1).webp',
+    image: siteUrl
+      ? `${siteUrl}/images/hero/IMG-20261107-WA0040(1).webp`
+      : '/images/hero/IMG-20261107-WA0040(1).webp',
     hasMap: RESORT_CONFIG.maps.resortDirectionsUrl,
     geo: {
       '@type': 'GeoCoordinates',
@@ -75,10 +77,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     checkoutTime: '11:00',
     numberOfRooms: RESORT_CONFIG.stayPolicy.totalRoomsCount,
     amenityFeature: [
-      { '@type': 'LocationFeatureSpecification', name: 'Main Swimming Pool & Dedicated Kids Pool (24 Hours)', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Rain Dance Facility (24 Hours)', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Pure Vegetarian Restaurant (Charged Separately)', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'Conference Hall & Event Lawns', value: true },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Main Swimming Pool & Dedicated Kids Pool (24 Hours)',
+        value: true,
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Rain Dance Facility (24 Hours)',
+        value: true,
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Pure Vegetarian Restaurant (Charged Separately)',
+        value: true,
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Conference Hall & Event Lawns',
+        value: true,
+      },
       { '@type': 'LocationFeatureSpecification', name: 'In-Room Wi-Fi & Television', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'On-Site Parking', value: true },
     ],
@@ -100,7 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased bg-obsidian text-palerose">{children}</body>
+      <body className="bg-obsidian font-sans text-palerose antialiased">{children}</body>
     </html>
   );
 }
