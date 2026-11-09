@@ -6,7 +6,7 @@
  * The palette keeps the brand's wine, rose and gold, but lets them accent a warm
  * blush-sand canvas instead of an obsidian one. Contrast ratios (WCAG 2.1):
  *   ink on sand 11.9 | ink-soft on sand 7.4 | wine on sand 8.3 | sand on wine 8.3
- *   gold-deep on sand 5.0 | gold-light on wine-deep 7.0 | rose on wine-deep 6.3
+ *   gold-deep on sand 6.4 (5.0 on rose-soft) | gold-light on wine-deep 7.0 | rose on wine-deep 6.3
  * Plain gold is decoration only (rules, icons) and never carries text.
  */
 @theme {
@@ -24,7 +24,7 @@
   --color-rose: #e79ab2;
   --color-rose-soft: #f2c4d2;
   --color-gold: #b8892b;
-  --color-gold-deep: #7f5c12;
+  --color-gold-deep: #6b4d0e;
   --color-gold-light: #d9b565;
 
   --font-display: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;

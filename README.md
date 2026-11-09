@@ -1,118 +1,103 @@
-# Samisthi Aranya Resorts — Official Website (Obsidian Rose Edition)
+# Samisthi Aranya Resorts
 
-> **Where Nature Meets Luxury.**
-> Single-page cinematic nature retreat website built with **Next.js App Router + TypeScript + Tailwind CSS**, strictly adhering to the **Obsidian Rose** visual system and verified owner data.
+Website for **Samisthi Aranya Resorts**, a nature retreat near Mannanur on the Srisailam highway in Telangana. _Where Nature Meets Luxury._
 
----
+It is a single, long landing page that shows the property, rooms and rates, facilities, photos, nearby places and FAQs, and sends guests to the resort team by phone or WhatsApp. There is **no online booking, no payment and no live availability** by design, and the tests check for that.
 
-## 1. Brand & Design System Authority (Obsidian Rose)
+## Stack
 
-This project enforces the exact 5-colour **Obsidian Rose** palette (`IMG_20260912_131454.jpg`) across all UI components (`tailwind.config.ts` and `src/app/globals.css`):
+- [Next.js](https://nextjs.org) 16 (App Router) with React 19 and TypeScript
+- [Tailwind CSS](https://tailwindcss.com) 4, with design tokens in `src/app/globals.css`
+- [lucide-react](https://lucide.dev) icons, `next/font` for Cormorant Garamond and DM Sans
+- ESLint 9, Prettier, Playwright and axe-core for checks
 
-| Palette Role              | Hex Code  | Tailwind Token | Primary Usage                                                    |
-| :------------------------ | :-------- | :------------- | :--------------------------------------------------------------- |
-| **Obsidian / Near-Black** | `#120D0F` | `obsidian`     | Primary background, deep overlays, modal surfaces                |
-| **Deep Wine**             | `#682E4E` | `wine`         | Section accents, card borders, active states, secondary buttons  |
-| **Rose**                  | `#E79AB2` | `rose`         | Editorial highlights, subtitles, hover states, secondary badges  |
-| **Pale Rose**             | `#F6E7EC` | `palerose`     | Primary light typography, headings, high-contrast reading copy   |
-| **Gold**                  | `#C9A227` | `gold`         | Fine rules, emblem details, primary CTA buttons, tariff callouts |
+Pages are statically generated. The only client-side code is the navigation, scroll effects, photo viewer, rate toggle, gallery filter and the small weather note.
 
-- **Logo Assets**:
-  - `public/images/brand/samisthi-aranya-logo.svg` & `src/components/ObsidianLogo.tsx`: Crisp vector cabin-and-nature emblem & wordmark redrawn in the Obsidian Rose palette on `#120D0F` / transparent background (zero green).
-  - `public/images/brand/samisthi-aranya-logo-obsidian.png`: Recoloured raster concept mark in Obsidian Rose hues.
+## Getting started
 
----
-
-## 2. Central Data Configuration (`src/data/resortData.ts`)
-
-All property details, room categories, tariffs, facility descriptions, gallery mappings, nearby Google Maps links, and FAQ entries live in one central file:
-
-- **`src/data/resortData.ts`**
-
-### Confirmed Public Room Catalogue (24-Hour Stay • Check-in 11:00 AM / Check-out 11:00 AM • GST Included)
-
-| Category                            | Guest Capacity         | Total Rooms  | AC Tariff (24 Hrs) | Non-AC Tariff (24 Hrs) |
-| :---------------------------------- | :--------------------- | :----------- | :----------------- | :--------------------- |
-| **2-Person Room**                   | 2 guests               | 11           | ₹2,500             | ₹1,500                 |
-| **4-Person Room**                   | 4 guests               | 7            | ₹4,000             | ₹2,500                 |
-| **6-Person Room**                   | 6 guests               | 2            | ₹6,000             | ₹3,500                 |
-| **Suite** (Living Lounge + Bedroom) | 2 guests               | 3            | ₹6,000             | ₹5,000                 |
-| **Total**                           | **68 guests combined** | **23 rooms** | —                  | —                      |
-
----
-
-## 3. Local Development & Build Instructions
-
-### Prerequisites
-
-- Node.js `>= 18.17.0` (LTS recommended)
-- `npm`, `pnpm`, or `yarn`
-
-### Install & Run Locally
-
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Copy environment variable template
-cp .env.example .env.local
-
-# 3. Start local development server (http://localhost:3000)
-npm run dev
-
-# 4. Run TypeScript check and production build verification
-npm run typecheck
-npm run build
-npm run start
-```
-
----
-
-## 4. GitHub + Vercel Deployment Checklist
-
-1. **Push to GitHub**:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial release: Samisthi Aranya Resorts Obsidian Rose website"
-   git branch -M main
-   git remote add origin https://github.com/<your-org>/samisthi-aranya-resorts.git
-   git push -u origin main
-   ```
-2. **Import into Vercel**:
-   - Connect the GitHub repository in the Vercel dashboard.
-   - Framework Preset: **Next.js** (detected automatically).
-   - Set `NEXT_PUBLIC_SITE_URL` to your initial `.vercel.app` production URL, then update it once the custom domain is connected.
-3. **Commercial Plan Verification Note**:
-   - Per [Vercel Pricing](https://vercel.com/pricing) and [Vercel Terms of Service](https://vercel.com/legal/terms), the Hobby plan (`$0/month`) is restricted to personal, non-commercial use, while the Pro plan (`$20/month`) supports commercial production sites. Because Samisthi Aranya Resorts is a commercial hospitality business, select an appropriate commercial plan before public launch.
-4. **Post-Domain SEO & Google Search Console Steps**:
-   - Once the custom domain is connected, update `NEXT_PUBLIC_SITE_URL` in Vercel environment variables so `/sitemap.xml`, `/robots.txt`, canonical tags, and Schema.org `LodgingBusiness` JSON-LD emit the final domain automatically.
-   - Submit `/sitemap.xml` in Google Search Console and align the resort's Google Business Profile name (`Samisthi Aranya Resorts`), phone (`+91 79815 83940`), and map pin (`https://maps.app.goo.gl/qJF7ig8nu8stzFhW6`) following the [Google Search Central SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide).
-
----
-
-## 5. Pending Owner Inputs & Verification Notes (Non-Blocking)
-
-1. **Room 102 Rate Discrepancy Flag**:
-   - The handwritten room sheet lists Room 102 at `₹1,600` for a 2-person Non-AC room, whereas the owner confirmed the public category-level 2-person Non-AC rate as `₹1,500`. The website displays the confirmed category rate (`₹1,500`) and omits individual room numbers and the un-reconciled handwritten total. Please verify Room 102 if room-by-room pricing is ever published in the future.
-2. **Official Google Review Link**:
-   - Once the owner retrieves the direct Google review/write-a-review link, set `NEXT_PUBLIC_GOOGLE_REVIEW_URL` in `.env.local` / Vercel (or `pendingOwnerConfig.googleReviewUrl` in `src/data/resortData.ts`).
-3. **Recoloured Obsidian Rose Logo Approval**:
-   - Both the crisp vector SVG emblem (`public/images/brand/samisthi-aranya-logo.svg`) and recoloured concept PNG (`public/images/brand/samisthi-aranya-logo-obsidian.png`) are included for final owner sign-off.
-4. **Nearby Destination Pin Names & Exact Postal Address Line**:
-   - The 5 Google Maps links (`https://maps.app.goo.gl/qJF7ig8nu8stzFhW6`, `https://maps.app.goo.gl/t8roSR29dQLuMqyE9`, `https://maps.app.goo.gl/QXp46SM2mBZuUCMy5`, `https://maps.app.goo.gl/LF679T3D1o5vqBF68`, `https://maps.app.goo.gl/uVvbNh7McWDtNca47`) are integrated directly without unverified driving distances. Confirm any formatted postal street line in `src/data/resortData.ts` (`pendingOwnerConfig.formattedPostalAddress`) if desired alongside the Google Maps directions button.
-
----
-
-## 6. Latest Review & Fixes
-
-See **`FIXES_APPLIED.md`** for the source changes made after the first review, the asset/content corrections, and the exact verification status. Before launch, install dependencies and run:
+You need Node 20.9 or newer (`.nvmrc` pins the version CI uses).
 
 ```bash
 npm install
-npm run typecheck
-npm run lint
-npm run build
+npm run dev        # http://localhost:3000
 ```
 
-Also test the deployed site on a real phone and desktop browser, especially the scroll effects, menus, room galleries, enquiry links, map links, and weather fallback.
+| Command             | What it does                                             |
+| ------------------- | -------------------------------------------------------- |
+| `npm run dev`       | Development server                                       |
+| `npm run build`     | Production build                                         |
+| `npm run start`     | Serve the production build                               |
+| `npm run lint`      | ESLint                                                   |
+| `npm run format`    | Format everything with Prettier (`format:check` to test) |
+| `npm run typecheck` | Generate Next's types, then run the TypeScript compiler  |
+| `npm run test:e2e`  | Build, then run the browser and accessibility tests      |
+| `npm run check`     | Everything CI runs, in order                             |
+
+The first time you run the browser tests, install the browser with `npx playwright install chromium`.
+
+## Updating content
+
+Everything a guest reads lives in `src/data/`, so the owner's details can change without touching components.
+
+| File            | Holds                                                                       |
+| --------------- | --------------------------------------------------------------------------- |
+| `resort.ts`     | Phone and WhatsApp number, map link, check-in and out, whole-resort pricing |
+| `rooms.ts`      | Room categories, counts, AC and Non-AC rates, descriptions and photos       |
+| `facilities.ts` | Pool, lawns, rain dance, restaurant and the other facilities                |
+| `faq.ts`        | Questions and answers. Rates and totals are pulled in from `rooms.ts`       |
+| `nearby.ts`     | Nearby places and their directions links                                    |
+| `gallery.ts`    | Which photos appear in the gallery and under which filter                   |
+| `photos.ts`     | Every photograph with its alt text and caption                              |
+
+Totals such as **23 rooms** and **68 guests** are calculated from the room list, so they cannot drift out of date.
+
+To add a photo, put the file in `src/assets/photos/`, import it in `photos.ts` with a description for the alt text, then reference it from the data file where it belongs.
+
+## Design
+
+The palette keeps the brand's wine, rose and gold but sits them on a warm blush-sand canvas instead of the original obsidian one.
+
+| Token       | Hex       | Used for                         |
+| ----------- | --------- | -------------------------------- |
+| `sand`      | `#F5E6DC` | Page background                  |
+| `petal`     | `#FBF0E9` | Raised cards and alternate bands |
+| `clay`      | `#EBD2C5` | Image placeholders               |
+| `ink`       | `#3A2230` | Body text                        |
+| `wine`      | `#682E4E` | Headings, buttons                |
+| `wine-deep` | `#4A1F38` | Footer and the events band       |
+| `rose`      | `#E79AB2` | Soft highlights                  |
+| `gold`      | `#B8892B` | Rules and icons, never text      |
+| `gold-deep` | `#6B4D0E` | Small gold labels                |
+
+Contrast ratios are noted next to the tokens in `globals.css`, and the axe scan in the test suite keeps them honest. Motion is limited to gentle fade-ups and image zooms, and respects the reduced-motion setting.
+
+The logo is redrawn as a vector in `src/components/ui/Logo.tsx`. The original concept image and the palette reference are kept in `docs/brand/`.
+
+## Quality checks and workflow
+
+GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `master` and every pull request:
+
+1. **Lint, types and build**: ESLint, Prettier check, TypeScript, production build
+2. **Browser tests**: Playwright on a desktop and a phone profile, including an axe accessibility scan of every page
+
+Work happens on `master`. Each phase of work goes into `main` through a pull request once CI is green.
+
+## Before going live
+
+Deployment has not been set up yet. When it is time:
+
+1. Import the GitHub repository in Vercel. The Next.js preset needs no changes.
+2. Set `NEXT_PUBLIC_SITE_URL` to the production address, first the `.vercel.app` URL and later the custom domain.
+3. Vercel's Hobby plan is for personal, non-commercial use, so a commercial resort site needs a plan that permits it. Check [Vercel's pricing and terms](https://vercel.com/pricing) at the time of deploying.
+4. After the domain is connected, submit `/sitemap.xml` in Google Search Console, and make sure the Google Business Profile has the same name, phone number and map pin as the site.
+
+Preview deployments and local builds send `noindex` and a disallow-all `robots.txt` automatically, so only the production site is indexed.
+
+## Still needed from the owner
+
+- **Google review link.** Set `NEXT_PUBLIC_GOOGLE_REVIEW_URL` and a "Write a review" link appears. Until then, the site links to the Google Maps listing and shows no reviews or ratings.
+- **Logo approval.** The redrawn mark follows the original concept in new colours.
+- **Postal address line.** Optional. Set `postalAddress` in `src/data/resort.ts` to show it beside the map link.
+- **Social links.** Add them to `socialLinks` in `src/data/resort.ts`. Nothing is shown while the list is empty.
+- **Room 102.** The handwritten room sheet lists it at ₹1,600 for a two-person Non-AC room, while the confirmed category rate is ₹1,500. The site uses ₹1,500 and shows no individual room numbers. Confirm before publishing any room-by-room list.
+- **Nearby pin names.** Check the four destination labels against their Google Maps pins. No distances or drive times are shown until they are measured from a route source.
