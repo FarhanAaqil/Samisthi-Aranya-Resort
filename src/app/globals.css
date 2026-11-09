@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-obsidian: #120D0F;
+  --color-wine: #682E4E;
+  --color-rose: #E79AB2;
+  --color-palerose: #F6E7EC;
+  --color-gold: #C9A227;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #120D0F;
+  color: #F6E7EC;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #120D0F;
+  color: #F6E7EC;
+  overflow-x: hidden;
+}
+
+/* Custom subtle scrollbars in Obsidian Rose palette */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #120D0F;
+}
+::-webkit-scrollbar-thumb {
+  background: #682E4E;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E79AB2;
+}
+
+/* Cinematic motion: restrained reveal, a slow hero drift, and tactile hover depth. */
+:root {
+  --scroll-progress: 0%;
+  --hero-parallax-y: 0px;
+}
+
+.hero-parallax {
+  transform: translate3d(0, var(--hero-parallax-y), 0) scale(1.08);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 760ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.facility-visual {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(201, 162, 39, 0.19), transparent 27%),
+    radial-gradient(circle at 12% 90%, rgba(231, 154, 178, 0.12), transparent 32%),
+    linear-gradient(135deg, rgba(104, 46, 78, 0.72) 0%, #120D0F 56%, rgba(201, 162, 39, 0.08) 100%);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-card-image {
+    transition: transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-parallax {
+    transform: none !important;
+    will-change: auto;
+  }
+  .scroll-reveal,
+  .scroll-reveal.is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
