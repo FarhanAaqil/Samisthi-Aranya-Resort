@@ -9,13 +9,13 @@
 
 This project enforces the exact 5-colour **Obsidian Rose** palette (`IMG_20260912_131454.jpg`) across all UI components (`tailwind.config.ts` and `src/app/globals.css`):
 
-| Palette Role | Hex Code | Tailwind Token | Primary Usage |
-| :--- | :--- | :--- | :--- |
-| **Obsidian / Near-Black** | `#120D0F` | `obsidian` | Primary background, deep overlays, modal surfaces |
-| **Deep Wine** | `#682E4E` | `wine` | Section accents, card borders, active states, secondary buttons |
-| **Rose** | `#E79AB2` | `rose` | Editorial highlights, subtitles, hover states, secondary badges |
-| **Pale Rose** | `#F6E7EC` | `palerose` | Primary light typography, headings, high-contrast reading copy |
-| **Gold** | `#C9A227` | `gold` | Fine rules, emblem details, primary CTA buttons, tariff callouts |
+| Palette Role              | Hex Code  | Tailwind Token | Primary Usage                                                    |
+| :------------------------ | :-------- | :------------- | :--------------------------------------------------------------- |
+| **Obsidian / Near-Black** | `#120D0F` | `obsidian`     | Primary background, deep overlays, modal surfaces                |
+| **Deep Wine**             | `#682E4E` | `wine`         | Section accents, card borders, active states, secondary buttons  |
+| **Rose**                  | `#E79AB2` | `rose`         | Editorial highlights, subtitles, hover states, secondary badges  |
+| **Pale Rose**             | `#F6E7EC` | `palerose`     | Primary light typography, headings, high-contrast reading copy   |
+| **Gold**                  | `#C9A227` | `gold`         | Fine rules, emblem details, primary CTA buttons, tariff callouts |
 
 - **Logo Assets**:
   - `public/images/brand/samisthi-aranya-logo.svg` & `src/components/ObsidianLogo.tsx`: Crisp vector cabin-and-nature emblem & wordmark redrawn in the Obsidian Rose palette on `#120D0F` / transparent background (zero green).
@@ -26,27 +26,30 @@ This project enforces the exact 5-colour **Obsidian Rose** palette (`IMG_2026091
 ## 2. Central Data Configuration (`src/data/resortData.ts`)
 
 All property details, room categories, tariffs, facility descriptions, gallery mappings, nearby Google Maps links, and FAQ entries live in one central file:
+
 - **`src/data/resortData.ts`**
 
 ### Confirmed Public Room Catalogue (24-Hour Stay • Check-in 11:00 AM / Check-out 11:00 AM • GST Included)
 
-| Category | Guest Capacity | Total Rooms | AC Tariff (24 Hrs) | Non-AC Tariff (24 Hrs) |
-| :--- | :--- | :--- | :--- | :--- |
-| **2-Person Room** | 2 guests | 11 | ₹2,500 | ₹1,500 |
-| **4-Person Room** | 4 guests | 7 | ₹4,000 | ₹2,500 |
-| **6-Person Room** | 6 guests | 2 | ₹6,000 | ₹3,500 |
-| **Suite** (Living Lounge + Bedroom) | 2 guests | 3 | ₹6,000 | ₹5,000 |
-| **Total** | **68 guests combined** | **23 rooms** | — | — |
+| Category                            | Guest Capacity         | Total Rooms  | AC Tariff (24 Hrs) | Non-AC Tariff (24 Hrs) |
+| :---------------------------------- | :--------------------- | :----------- | :----------------- | :--------------------- |
+| **2-Person Room**                   | 2 guests               | 11           | ₹2,500             | ₹1,500                 |
+| **4-Person Room**                   | 4 guests               | 7            | ₹4,000             | ₹2,500                 |
+| **6-Person Room**                   | 6 guests               | 2            | ₹6,000             | ₹3,500                 |
+| **Suite** (Living Lounge + Bedroom) | 2 guests               | 3            | ₹6,000             | ₹5,000                 |
+| **Total**                           | **68 guests combined** | **23 rooms** | —                  | —                      |
 
 ---
 
 ## 3. Local Development & Build Instructions
 
 ### Prerequisites
+
 - Node.js `>= 18.17.0` (LTS recommended)
 - `npm`, `pnpm`, or `yarn`
 
 ### Install & Run Locally
+
 ```bash
 # 1. Install dependencies
 npm install

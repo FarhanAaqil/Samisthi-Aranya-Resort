@@ -1,11 +1,11 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (
-    process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
-      : undefined
-  );
+      : undefined);
   if (!siteUrl) return [];
   return [
     {

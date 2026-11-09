@@ -46,7 +46,10 @@ export function WeatherWidget() {
           setWeather({
             status: 'ready',
             tempC: Math.round(current.temperature_2m),
-            windKmh: typeof current.wind_speed_10m === 'number' ? Math.round(current.wind_speed_10m) : undefined,
+            windKmh:
+              typeof current.wind_speed_10m === 'number'
+                ? Math.round(current.wind_speed_10m)
+                : undefined,
             conditionLabel: decodeWmoCode(Number(current.weather_code ?? 0)),
           });
         } else {
@@ -87,7 +90,7 @@ export function WeatherWidget() {
         href="https://open-meteo.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-[11px] text-rose/80 underline decoration-wine hover:text-gold focus:outline-none focus:ring-1 focus:ring-gold rounded px-1"
+        className="rounded px-1 text-[11px] text-rose/80 underline decoration-wine hover:text-gold focus:ring-1 focus:ring-gold focus:outline-none"
       >
         Weather by Open-Meteo
       </a>

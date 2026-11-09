@@ -1,26 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-obsidian: #120d0f;
+  --color-wine: #682e4e;
+  --color-rose: #e79ab2;
+  --color-palerose: #f6e7ec;
+  --color-gold: #c9a227;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+}
 
 :root {
-  --color-obsidian: #120D0F;
-  --color-wine: #682E4E;
-  --color-rose: #E79AB2;
-  --color-palerose: #F6E7EC;
-  --color-gold: #C9A227;
+  --color-obsidian: #120d0f;
+  --color-wine: #682e4e;
+  --color-rose: #e79ab2;
+  --color-palerose: #f6e7ec;
+  --color-gold: #c9a227;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #120D0F;
-  color: #F6E7EC;
+  background-color: #120d0f;
+  color: #f6e7ec;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -29,8 +42,8 @@ html {
 }
 
 body {
-  background-color: #120D0F;
-  color: #F6E7EC;
+  background-color: #120d0f;
+  color: #f6e7ec;
   overflow-x: hidden;
 }
 
@@ -40,14 +53,14 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #120D0F;
+  background: #120d0f;
 }
 ::-webkit-scrollbar-thumb {
-  background: #682E4E;
+  background: #682e4e;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #E79AB2;
+  background: #e79ab2;
 }
 
 /* Cinematic motion: restrained reveal, a slow hero drift, and tactile hover depth. */
@@ -80,7 +93,7 @@ body {
   background:
     radial-gradient(circle at 78% 18%, rgba(201, 162, 39, 0.19), transparent 27%),
     radial-gradient(circle at 12% 90%, rgba(231, 154, 178, 0.12), transparent 32%),
-    linear-gradient(135deg, rgba(104, 46, 78, 0.72) 0%, #120D0F 56%, rgba(201, 162, 39, 0.08) 100%);
+    linear-gradient(135deg, rgba(104, 46, 78, 0.72) 0%, #120d0f 56%, rgba(201, 162, 39, 0.08) 100%);
 }
 
 button,

@@ -39,7 +39,14 @@ export interface GalleryItem {
   webp: string;
   alt: string;
   caption: string;
-  group: 'rooms-2p' | 'rooms-4p' | 'rooms-6p-suite' | 'pool' | 'lawns-exterior' | 'balconies-corridors' | 'events';
+  group:
+    | 'rooms-2p'
+    | 'rooms-4p'
+    | 'rooms-6p-suite'
+    | 'pool'
+    | 'lawns-exterior'
+    | 'balconies-corridors'
+    | 'events';
   groupLabel: string;
 }
 
@@ -62,7 +69,8 @@ export interface FaqItem {
 export const RESORT_CONFIG = {
   brandName: 'Samisthi Aranya Resorts',
   tagline: 'Where Nature Meets Luxury.',
-  localitySummary: 'Mannanur — Srisailam Highway Corridor, Near Amrabad Tiger Reserve & Srisailam Dam View Point, Telangana',
+  localitySummary:
+    'Mannanur — Srisailam Highway Corridor, Near Amrabad Tiger Reserve & Srisailam Dam View Point, Telangana',
   // Do not invent a unconfirmed street number; use verified locality and direct Google Maps pin
   verifiedLocalityLabel: 'Near Mannanur, Srisailam Highway Region, Telangana, India',
   coordinates: {
@@ -74,7 +82,8 @@ export const RESORT_CONFIG = {
     phoneDisplay: '+91 79815 83940',
     telHref: 'tel:+917981583940',
     whatsappHref: 'https://wa.me/917981583940',
-    whatsappDefaultText: 'Hello Samisthi Aranya Resorts team, I would like to enquire about room availability and tariffs for an upcoming stay.',
+    whatsappDefaultText:
+      'Hello Samisthi Aranya Resorts team, I would like to enquire about room availability and tariffs for an upcoming stay.',
   },
   maps: {
     resortDirectionsUrl: 'https://maps.app.goo.gl/qJF7ig8nu8stzFhW6',
@@ -379,16 +388,14 @@ export const CONFIRMED_FACILITIES: FacilityItem[] = [
     badge: '24 Hours • Included in Tariff',
     description:
       'Celebrate with family and friends under our dedicated rain dance facility, included with your stay at no additional charge.',
-    details:
-      'Available 24 hours and included in the room tariff for registered resort guests.',
+    details: 'Available 24 hours and included in the room tariff for registered resort guests.',
     visualLabel: 'Rain dance',
   },
   {
     id: 'vegetarian-restaurant',
     title: 'Pure Vegetarian Restaurant',
     badge: 'Vegetarian Only • Charged Separately',
-    description:
-      'Enjoy vegetarian food at the on-site restaurant, with covered courtyard seating.',
+    description: 'Enjoy vegetarian food at the on-site restaurant, with covered courtyard seating.',
     details:
       'Strictly vegetarian-only restaurant. Food and beverages are charged separately and are not included in the room tariffs.',
     visualLabel: 'Pure vegetarian dining',
@@ -442,7 +449,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     src: '/images/hero/IMG-20261107-WA0040(1).jpg',
     webp: '/images/hero/IMG-20261107-WA0040(1).webp',
     alt: 'Samisthi Aranya Resorts main building and expansive green lawn at twilight',
-    caption: 'Samisthi Aranya Resorts — Main building and manicured central lawn under the evening sky',
+    caption:
+      'Samisthi Aranya Resorts — Main building and manicured central lawn under the evening sky',
     group: 'lawns-exterior',
     groupLabel: 'Lawns & Exterior',
   },
@@ -777,7 +785,8 @@ export const NEARBY_DESTINATIONS: NearbyDestination[] = [
     isPrimaryHighlight: true,
     description:
       'A well-known regional landmark and the main sightseeing highlight suggested for guests exploring the Srisailam area.',
-    mapsUrl: 'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.0856741%2C78.8995965&travelmode=driving',
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.0856741%2C78.8995965&travelmode=driving',
     verificationNote: 'Open Google Maps for directions from the resort.',
   },
   {
@@ -786,7 +795,8 @@ export const NEARBY_DESTINATIONS: NearbyDestination[] = [
     badge: 'Wildlife & Forest Safari',
     description:
       'A nearby point of interest for visitors exploring the Amrabad forest region. Check current access rules and safari information with the relevant local authority before travelling.',
-    mapsUrl: 'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.2679999%2C78.7215682&travelmode=driving',
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.2679999%2C78.7215682&travelmode=driving',
     verificationNote: 'Check current safari access rules and timings before travelling.',
   },
   {
@@ -795,16 +805,17 @@ export const NEARBY_DESTINATIONS: NearbyDestination[] = [
     badge: 'Panoramic Valley Viewpoint',
     description:
       'A scenic viewpoint in the Srisailam region. Open the location pin for directions and current route information.',
-    mapsUrl: 'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.1540647%2C78.8817806&travelmode=driving',
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.1540647%2C78.8817806&travelmode=driving',
     verificationNote: 'Open Google Maps for directions from the resort.',
   },
   {
     id: 'munnanur-jungle-resort',
     name: 'Munnanur Jungle Resort',
     badge: 'Mannanur Eco-Tourism Hub',
-    description:
-      'A nearby destination along the Mannanur stretch of the Srisailam route.',
-    mapsUrl: 'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.375471%2C78.7569107&travelmode=driving',
+    description: 'A nearby destination along the Mannanur stretch of the Srisailam route.',
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&origin=16.3505042%2C78.7507832&destination=16.375471%2C78.7569107&travelmode=driving',
     verificationNote: 'Open Google Maps for directions from the resort.',
   },
 ];
@@ -848,7 +859,8 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     id: 'faq-whole-resort',
-    question: 'Can we book the entire resort exclusively for a wedding, family event, or corporate outing?',
+    question:
+      'Can we book the entire resort exclusively for a wedding, family event, or corporate outing?',
     answer:
       'Yes! With 23 rooms (combined capacity of 68 guests), a conference hall, and expansive lawns, whole-resort exclusive hire is available at an indicative custom quote range of ₹70,000 – ₹1,00,000 per day depending on your event date and guest count.',
   },
