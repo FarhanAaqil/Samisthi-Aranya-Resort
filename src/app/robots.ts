@@ -1,16 +1,11 @@
 import type { MetadataRoute } from 'next';
 
+import { getSiteUrl, isIndexable } from '@/lib/site';
+
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : undefined);
+  const siteUrl = getSiteUrl();
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-    },
-    ...(siteUrl ? { sitemap: `${siteUrl}/sitemap.xml` } : {}),
+    rules: isIndexable() ? { userAgent: '*', allow: '/' } : { userAgent: '*', disallow: '/' },
+    ...(siteUrl && isIndexable() ? { sitemap: `${siteUrl}/sitemap.xml` } : {}),
   };
 }

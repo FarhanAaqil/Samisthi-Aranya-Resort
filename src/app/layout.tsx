@@ -1,7 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
+
+import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
+import { Reveal } from '@/components/layout/Reveal';
+import { ScrollEffects } from '@/components/layout/ScrollEffects';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { RESORT } from '@/data/resort';
+import { getSiteUrl, isIndexable } from '@/lib/site';
+
 import './globals.css';
-import { RESORT_CONFIG, ROOM_CATEGORIES } from '@/data/resortData';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -17,107 +25,62 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_ENV === 'production' && process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : undefined);
+const siteUrl = getSiteUrl();
+
+const description =
+  'A nature retreat near Mannanur on the Srisailam highway. 23 AC and Non-AC rooms and suites, a 24-hour pool and rain dance, green lawns and pure vegetarian dining, close to Srisailam Dam View Point and Amrabad Tiger Reserve.';
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
-  title: 'Samisthi Aranya Resorts | Nature Retreat Near Mannanur & Srisailam Dam View Point',
-  description:
-    'Samisthi Aranya Resorts — Where Nature Meets Luxury. Stay near Mannanur, Amrabad Tiger Reserve & Srisailam Dam View Point with 23 AC/Non-AC rooms & suites, 24-hour swimming pool, kids pool, rain dance & pure vegetarian dining.',
-  ...(siteUrl ? { alternates: { canonical: '/' } } : {}),
+  metadataBase: new URL(siteUrl ?? 'http://localhost:3000'),
+  title: {
+    default: `${RESORT.name} | Nature stay near Mannanur and Srisailam`,
+    template: `%s | ${RESORT.name}`,
+  },
+  description,
+  alternates: { canonical: '/' },
+  robots: isIndexable() ? undefined : { index: false, follow: false },
   openGraph: {
-    title: 'Samisthi Aranya Resorts — Where Nature Meets Luxury.',
-    description:
-      'Nature retreat near Mannanur & Srisailam Dam View Point featuring 23 AC & Non-AC rooms and suites, 24-hour pool & rain dance, spacious lawns, and direct WhatsApp/phone booking.',
-    ...(siteUrl ? { url: siteUrl } : {}),
-    siteName: 'Samisthi Aranya Resorts',
+    title: `${RESORT.name}: ${RESORT.tagline}`,
+    description,
+    siteName: RESORT.name,
     locale: 'en_IN',
     type: 'website',
+    url: '/',
     images: [
       {
-        url: '/images/hero/IMG-20261107-WA0040(1).webp',
-        width: 1280,
-        height: 960,
-        alt: 'Samisthi Aranya Resorts main building and green lawn at twilight',
+        url: '/og-resort.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'The main building of Samisthi Aranya Resorts beside its green lawn at sunset',
       },
     ],
   },
+  twitter: { card: 'summary_large_image' },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#f5e6dc',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Truthful Schema.org LodgingBusiness / Hotel structured data (no fabricated review/rating fields)
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LodgingBusiness',
-    name: RESORT_CONFIG.brandName,
-    slogan: RESORT_CONFIG.tagline,
-    ...(siteUrl ? { url: siteUrl } : {}),
-    telephone: '+91-79815-83940',
-    image: siteUrl
-      ? `${siteUrl}/images/hero/IMG-20261107-WA0040(1).webp`
-      : '/images/hero/IMG-20261107-WA0040(1).webp',
-    hasMap: RESORT_CONFIG.maps.resortDirectionsUrl,
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: RESORT_CONFIG.coordinates.latitude,
-      longitude: RESORT_CONFIG.coordinates.longitude,
-    },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Mannanur',
-      addressRegion: 'Telangana',
-      addressCountry: 'IN',
-    },
-    checkinTime: '11:00',
-    checkoutTime: '11:00',
-    numberOfRooms: RESORT_CONFIG.stayPolicy.totalRoomsCount,
-    amenityFeature: [
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Main Swimming Pool & Dedicated Kids Pool (24 Hours)',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Rain Dance Facility (24 Hours)',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Pure Vegetarian Restaurant (Charged Separately)',
-        value: true,
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Conference Hall & Event Lawns',
-        value: true,
-      },
-      { '@type': 'LocationFeatureSpecification', name: 'In-Room Wi-Fi & Television', value: true },
-      { '@type': 'LocationFeatureSpecification', name: 'On-Site Parking', value: true },
-    ],
-    containsPlace: ROOM_CATEGORIES.map((r) => ({
-      '@type': 'HotelRoom',
-      name: r.name,
-      occupancy: {
-        '@type': 'QuantitativeValue',
-        maxValue: r.occupancyGuests,
-      },
-    })),
-  };
-
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className="bg-obsidian font-sans text-palerose antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-wine focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-petal"
+        >
+          Skip to content
+        </a>
+        <ScrollEffects />
+        <Header />
+        {children}
+        <Footer />
+        <Reveal />
+        <JsonLd />
+      </body>
     </html>
   );
 }

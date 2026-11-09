@@ -1,25 +1,33 @@
-import React from 'react';
-import Link from 'next/link';
-import { ObsidianLogo } from '@/components/ObsidianLogo';
+import type { Metadata } from 'next';
+
+import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
+import { Logo } from '@/components/ui/Logo';
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  robots: { index: false },
+};
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-obsidian px-6 text-center text-palerose">
-      <ObsidianLogo className="mx-auto w-full max-w-xs" />
-      <p className="mt-4 text-xs tracking-[0.25em] text-gold uppercase">404 • Page Not Found</p>
-      <h1 className="mt-2 font-serif text-3xl text-palerose sm:text-5xl">
-        This Forest Path Leads Back to the Resort
-      </h1>
-      <p className="mt-3 max-w-md text-sm text-palerose/80">
-        Samisthi Aranya Resorts is a single-page experience. Return to our main page to explore
-        rooms, tariffs, facilities, and direct booking enquiries.
-      </p>
-      <Link
-        href="/"
-        className="mt-8 rounded-full bg-gold px-7 py-3 text-xs font-semibold tracking-widest text-obsidian uppercase transition-colors hover:bg-rose"
-      >
-        Return to Samisthi Aranya Resorts
-      </Link>
+    <main id="main" className="grid min-h-screen place-items-center pt-24 pb-16">
+      <Container size="narrow" className="text-center">
+        <Logo variant="stacked" />
+        <p className="mt-10 text-xs font-semibold tracking-[0.22em] text-gold-deep uppercase">
+          Page not found
+        </p>
+        <h1 className="mt-3 font-display text-4xl font-semibold text-balance text-wine sm:text-5xl">
+          This path leads back to the resort
+        </h1>
+        <p className="mx-auto mt-4 max-w-md text-ink-soft">
+          The page you were looking for isn’t here. Everything about the resort, from rooms and
+          tariffs to directions, is on the home page.
+        </p>
+        <Button href="/" size="lg" className="mt-8">
+          Back to Samisthi Aranya Resorts
+        </Button>
+      </Container>
     </main>
   );
 }
