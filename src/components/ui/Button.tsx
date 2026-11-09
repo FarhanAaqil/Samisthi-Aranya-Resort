@@ -1,6 +1,6 @@
 import { cn } from '@/lib/cn';
 
-type Variant = 'primary' | 'secondary' | 'soft' | 'light';
+type Variant = 'primary' | 'secondary' | 'soft' | 'light' | 'outlineLight';
 type Size = 'md' | 'lg';
 
 const variants: Record<Variant, string> = {
@@ -8,6 +8,7 @@ const variants: Record<Variant, string> = {
   secondary: 'border border-wine/60 text-wine hover:border-wine hover:bg-wine/8',
   soft: 'bg-rose-soft text-wine-deep hover:bg-rose',
   light: 'bg-petal text-wine-deep hover:bg-rose-soft',
+  outlineLight: 'text-petal ring-1 ring-petal/50 hover:bg-petal/12',
 };
 
 const sizes: Record<Size, string> = {

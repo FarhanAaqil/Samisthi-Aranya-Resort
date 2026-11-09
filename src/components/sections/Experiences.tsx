@@ -102,11 +102,7 @@ export function Experiences() {
               <MessageCircle className="size-4" aria-hidden="true" />
               WhatsApp
             </Button>
-            <Button
-              href={telHref}
-              variant="light"
-              className="bg-transparent text-petal ring-1 ring-petal/50 hover:bg-petal/12"
-            >
+            <Button href={telHref} variant="outlineLight">
               <Phone className="size-4" aria-hidden="true" />
               Call
             </Button>
