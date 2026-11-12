@@ -78,7 +78,7 @@ export function Weather() {
             href="https://open-meteo.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs whitespace-nowrap text-ink-soft/80 underline decoration-wine/30 underline-offset-2 hover:text-wine"
+            className="text-xs whitespace-nowrap text-ink-soft underline decoration-wine/30 underline-offset-2 hover:text-wine"
           >
             Open-Meteo
           </a>

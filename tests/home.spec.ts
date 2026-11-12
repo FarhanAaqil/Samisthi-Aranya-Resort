@@ -42,10 +42,54 @@ test.describe('home page', () => {
     for (const href of whatsappLinks) expect(href.startsWith(WHATSAPP_PREFIX)).toBe(true);
   });
 
-  test('stays an enquiry site: no forms, no payments, no live availability', async ({ page }) => {
+  test('takes no payments and never claims live availability', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('form, input, textarea, select')).toHaveCount(0);
-    await expect(page.getByText(/available today|rooms left|book online|pay now/i)).toHaveCount(0);
+    await expect(
+      page.locator('input[type="password"], input[autocomplete^="cc-"], input[name*="card" i]'),
+    ).toHaveCount(0);
+    await expect(page.getByText(/available today|rooms left|pay now/i)).toHaveCount(0);
+  });
+
+  test('the availability form opens WhatsApp with the request written out', async ({
+    page,
+    isMobile,
+  }) => {
+    await page.goto('/');
+    await page.evaluate(() => {
+      const opened: string[] = [];
+      (window as unknown as { __opened: string[] }).__opened = opened;
+      window.open = ((url?: string | URL) => {
+        opened.push(String(url));
+        return null;
+      }) as typeof window.open;
+    });
+
+    if (isMobile) await page.getByRole('button', { name: 'Book', exact: true }).click();
+    else await page.getByRole('button', { name: 'Check availability' }).first().click();
+
+    const dialog = page.getByRole('dialog', { name: 'Check availability' });
+    await expect(dialog).toBeVisible();
+
+    await dialog.getByLabel('Check-in').fill('2030-12-12');
+    await dialog.getByLabel('Check-out').fill('2030-12-11');
+    await dialog.getByRole('button', { name: 'Check on WhatsApp' }).click();
+    await expect(dialog.getByRole('alert')).toHaveText('Check-out needs to be after check-in.');
+
+    await dialog.getByLabel('Check-out').fill('2030-12-13');
+    await dialog.getByLabel('Guests').selectOption('2');
+    await dialog.getByLabel('Room').selectOption({ label: 'Suite' });
+    await dialog.getByRole('button', { name: 'Check on WhatsApp' }).click();
+
+    const opened = await page.evaluate(
+      () => (window as unknown as { __opened: string[] }).__opened,
+    );
+    expect(opened).toHaveLength(1);
+    const url = new URL(opened[0]);
+    expect(url.origin + url.pathname).toBe(WHATSAPP_PREFIX);
+    expect(url.searchParams.get('text')).toContain(
+      'the Suite from 12 Dec 2030 to 13 Dec 2030 (1 night) for 2 guests',
+    );
+    await expect(dialog).toBeHidden();
   });
 
   test('rates switch between AC and Non-AC and the totals add up', async ({ page }) => {

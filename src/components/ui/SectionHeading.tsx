@@ -5,7 +5,7 @@ interface SectionHeadingProps {
   title: string;
   lead?: string;
   align?: 'left' | 'center';
-  /** Use on the wine section so the eyebrow and text stay readable. */
+  /** Use on forest sections so the eyebrow and text stay readable. */
   onDark?: boolean;
   className?: string;
 }
@@ -23,18 +23,19 @@ export function SectionHeading({
     <header className={cn('max-w-2xl', centered && 'mx-auto text-center', className)} data-reveal>
       <p
         className={cn(
-          'flex items-center gap-3 text-xs font-semibold tracking-[0.22em] uppercase',
+          'eyebrow flex items-center gap-4',
           onDark ? 'text-gold-light' : 'text-gold-deep',
           centered && 'justify-center',
         )}
       >
-        <span aria-hidden="true" className="h-px w-8 bg-current opacity-70" />
+        <span aria-hidden="true" className="rule" />
         {eyebrow}
+        {centered && <span aria-hidden="true" className="rule" />}
       </p>
       <h2
         className={cn(
-          'mt-4 font-display text-4xl leading-[1.08] font-semibold text-balance sm:text-5xl',
-          onDark ? 'text-petal' : 'text-wine',
+          'mt-6 font-display text-[2.6rem] leading-[1.06] font-medium text-balance sm:text-[3.4rem]',
+          onDark ? 'text-ivory' : 'text-forest',
         )}
       >
         {title}
@@ -42,8 +43,8 @@ export function SectionHeading({
       {lead && (
         <p
           className={cn(
-            'mt-5 text-base leading-relaxed text-pretty sm:text-lg',
-            onDark ? 'text-petal/85' : 'text-ink-soft',
+            'mt-6 text-lg leading-relaxed font-light text-pretty',
+            onDark ? 'text-ivory/80' : 'text-ink-soft',
           )}
         >
           {lead}

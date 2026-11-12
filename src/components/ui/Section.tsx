@@ -1,30 +1,35 @@
 import { cn } from '@/lib/cn';
 import { Container } from './Container';
 
-type Tone = 'sand' | 'petal' | 'clay' | 'wine';
+type Tone = 'ivory' | 'paper' | 'stone' | 'forest' | 'sand' | 'petal' | 'clay' | 'wine';
 
 const tones: Record<Tone, string> = {
-  sand: 'bg-sand text-ink',
-  petal: 'bg-petal text-ink',
-  clay: 'bg-clay text-ink',
-  wine: 'on-dark bg-wine-deep text-petal',
+  ivory: 'bg-ivory text-ink',
+  paper: 'bg-paper text-ink',
+  stone: 'bg-stone text-ink',
+  forest: 'on-dark bg-forest text-ivory',
+  // Earlier names, mapped onto the new palette until every section moves over.
+  sand: 'bg-ivory text-ink',
+  petal: 'bg-paper text-ink',
+  clay: 'bg-stone text-ink',
+  wine: 'on-dark bg-forest text-ivory',
 };
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   tone?: Tone;
-  containerSize?: 'default' | 'narrow';
+  containerSize?: 'default' | 'narrow' | 'wide';
 }
 
 /** Page section with consistent vertical rhythm. The id doubles as the anchor target. */
 export function Section({
-  tone = 'sand',
+  tone = 'ivory',
   containerSize,
   className,
   children,
   ...rest
 }: SectionProps) {
   return (
-    <section className={cn('py-20 sm:py-28', tones[tone], className)} {...rest}>
+    <section className={cn('py-24 sm:py-32', tones[tone], className)} {...rest}>
       <Container size={containerSize}>{children}</Container>
     </section>
   );

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
+import { Cinzel, Cormorant_Garamond, Jost } from 'next/font/google';
 
+import { BookingBar } from '@/components/booking/BookingBar';
+import { BookingProvider } from '@/components/booking/BookingProvider';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { Reveal } from '@/components/layout/Reveal';
@@ -14,15 +16,24 @@ import './globals.css';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
   display: 'swap',
 });
 
-const dmSans = DM_Sans({
+const jost = Jost({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-jost',
+  display: 'swap',
+});
+
+// Only the wordmark uses Cinzel, so only the one weight is loaded.
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['600'],
+  variable: '--font-cinzel',
   display: 'swap',
 });
 
@@ -59,25 +70,28 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#f5e6dc',
+  themeColor: '#08230f',
   width: 'device-width',
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${cormorant.variable} ${jost.variable} ${cinzel.variable}`}>
+      <body className="pb-[calc(4rem+env(safe-area-inset-bottom))] font-sans antialiased lg:pb-[5.25rem]">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-wine focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-petal"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-forest focus:px-5 focus:py-3 focus:text-sm focus:text-ivory"
         >
           Skip to content
         </a>
-        <ScrollEffects />
-        <Header />
-        {children}
-        <Footer />
+        <BookingProvider>
+          <ScrollEffects />
+          <Header />
+          {children}
+          <Footer />
+          <BookingBar />
+        </BookingProvider>
         <Reveal />
         <JsonLd />
       </body>

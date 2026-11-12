@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { Logo } from '@/components/ui/Logo';
+import { Wordmark } from '@/components/ui/Logo';
 
 export const metadata: Metadata = {
   title: 'Page not found',
@@ -13,7 +13,7 @@ export default function NotFound() {
   return (
     <main id="main" className="grid min-h-screen place-items-center pt-24 pb-16">
       <Container size="narrow" className="text-center">
-        <Logo variant="stacked" />
+        <Wordmark />
         <p className="mt-10 text-xs font-semibold tracking-[0.22em] text-gold-deep uppercase">
           Page not found
         </p>
