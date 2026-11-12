@@ -1,5 +1,14 @@
 import type { LucideIcon } from 'lucide-react';
-import { CloudRain, Flame, Presentation, Trophy, Utensils, Waves, Wifi } from 'lucide-react';
+import {
+  CloudRain,
+  Compass,
+  Flame,
+  Presentation,
+  Trophy,
+  Utensils,
+  Waves,
+  Wifi,
+} from 'lucide-react';
 
 import { photos, type Photo } from './photos';
 
@@ -30,7 +39,15 @@ export const FACILITIES: Facility[] = [
     description:
       'Cricket, football, volleyball and garden games on a wide green lawn. Use the resort’s equipment or bring your own.',
     icon: Trophy,
-    photo: photos.lawnDaylight,
+    photo: photos.lawnHills,
+  },
+  {
+    id: 'safari',
+    title: 'Jungle safari',
+    note: 'Arranged by the resort · paid separately',
+    description:
+      'The resort arranges jungle safaris into the Amrabad Tiger Reserve. Ask the team about timings when you book.',
+    icon: Compass,
   },
   {
     id: 'rain-dance',

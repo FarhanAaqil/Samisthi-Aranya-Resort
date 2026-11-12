@@ -41,10 +41,11 @@ export const NEARBY_PLACES: NearbyPlace[] = [
     directionsUrl: directionsTo(16.1540647, 78.8817806),
   },
   {
-    id: 'munnanur-jungle-resort',
-    name: 'Munnanur Jungle Resort',
-    kind: 'Along the Mannanur stretch',
-    description: 'Another stop along the Mannanur stretch of the Srisailam route.',
-    directionsUrl: directionsTo(16.375471, 78.7569107),
+    id: 'uma-maheswaram-temple',
+    name: 'Uma Maheswaram Temple',
+    kind: 'Hilltop temple',
+    description:
+      'A Shiva temple on a forested hill near Achampet, traditionally known as the northern gateway to Srisailam.',
+    directionsUrl: 'https://maps.app.goo.gl/2zpPaM4QmGwvmvqd6',
   },
 ];

@@ -64,18 +64,18 @@ export function ResortIntro() {
 
         <div className="grid grid-cols-5 gap-4 lg:col-span-6" data-reveal>
           <Picture
-            photo={photos.lawnDaylight}
+            photo={photos.lawnOpenSky}
             sizes="(min-width: 1024px) 22vw, 40vw"
             className="col-span-3 row-span-2 min-h-80 rounded-[2rem] shadow-soft"
             imageClassName="object-[50%_60%]"
           />
           <Picture
-            photo={photos.coveredPavilion}
+            photo={photos.pavilion}
             sizes="(min-width: 1024px) 15vw, 30vw"
             className="col-span-2 aspect-square rounded-[2rem] shadow-soft"
           />
           <Picture
-            photo={photos.upperVerandah}
+            photo={photos.corridorLong}
             sizes="(min-width: 1024px) 15vw, 30vw"
             className="col-span-2 aspect-[3/4] rounded-t-full rounded-b-[2rem] shadow-soft"
           />

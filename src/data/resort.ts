@@ -5,6 +5,8 @@
 export const RESORT = {
   name: 'Samisthi Aranya Resorts',
   tagline: 'Where Nature Meets Luxury.',
+  /** The line from the logo, used as the headline. */
+  motto: 'Breathe Nallamala',
   locality: 'Mannanur, on the Srisailam highway, Telangana',
   coordinates: { latitude: 16.3505042, longitude: 78.7507832 },
 
@@ -14,6 +16,8 @@ export const RESORT = {
     whatsappNumber: '917981583940',
     welcomeMessage:
       'Hello Samisthi Aranya Resorts team, I would like to enquire about room availability and tariffs for an upcoming stay.',
+    safariMessage:
+      'Hello Samisthi Aranya Resorts, I would like to know more about the jungle safari into the Amrabad Tiger Reserve.',
     eventMessage:
       'Hello Samisthi Aranya Resorts, I would like a custom quote for an event or an exclusive whole-resort booking.',
   },

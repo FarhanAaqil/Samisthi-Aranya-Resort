@@ -49,7 +49,7 @@ Everything a guest reads lives in `src/data/`, so the owner's details can change
 | `gallery.ts`    | Which photos appear in the gallery and under which filter                   |
 | `photos.ts`     | Every photograph with its alt text and caption                              |
 
-Totals such as **23 rooms** and **68 guests** are calculated from the room list, so they cannot drift out of date.
+Totals such as **21 rooms** and **56 guests** are calculated from the room list, so they cannot drift out of date.
 
 To add a photo, put the file in `src/assets/photos/`, import it in `photos.ts` with a description for the alt text, then reference it from the data file where it belongs.
 
@@ -99,5 +99,4 @@ Preview deployments and local builds send `noindex` and a disallow-all `robots.t
 - **Logo approval.** The redrawn mark follows the original concept in new colours.
 - **Postal address line.** Optional. Set `postalAddress` in `src/data/resort.ts` to show it beside the map link.
 - **Social links.** Add them to `socialLinks` in `src/data/resort.ts`. Nothing is shown while the list is empty.
-- **Room 102.** The handwritten room sheet lists it at ₹1,600 for a two-person Non-AC room, while the confirmed category rate is ₹1,500. The site uses ₹1,500 and shows no individual room numbers. Confirm before publishing any room-by-room list.
-- **Nearby pin names.** Check the four destination labels against their Google Maps pins. No distances or drive times are shown until they are measured from a route source.
+- **Nearby pin names.** Srisailam Dam View Point, the Amrabad safari gate and Octopus View Point have not been checked against their Google Maps pins yet. No distances or drive times are shown until they are measured from a route source.

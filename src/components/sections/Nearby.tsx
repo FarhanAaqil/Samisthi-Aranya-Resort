@@ -9,7 +9,7 @@ const icons: Record<string, typeof Landmark> = {
   'srisailam-dam-view-point': Landmark,
   'amrabad-safari-gate': TreePine,
   'octopus-view-point': Binoculars,
-  'munnanur-jungle-resort': Mountain,
+  'uma-maheswaram-temple': Mountain,
 };
 
 export function Nearby() {

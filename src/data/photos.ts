@@ -5,15 +5,23 @@ import groupGathering from '@/assets/photos/events/group-gathering-in-courtyard.
 import poolDeckNight from '@/assets/photos/pool/swimming-pool-deck-night.jpg';
 import poolEvening from '@/assets/photos/pool/swimming-pool-evening-view.jpg';
 import poolNight from '@/assets/photos/pool/swimming-pool-night.jpg';
-import coveredPavilion from '@/assets/photos/resort/covered-pavilion-overlooking-lawn.jpg';
-import coveredWalkway from '@/assets/photos/resort/covered-walkway-checkered-tiles.jpg';
+import checkeredWalkway from '@/assets/photos/resort/checkered-walkway.jpg';
+import entranceGazebo from '@/assets/photos/resort/entrance-courtyard-gazebo.jpg';
+import entrancePorch from '@/assets/photos/resort/entrance-porch-wooden-pillars.jpg';
 import facadeNight from '@/assets/photos/resort/facade-lit-at-night.jpg';
-import lawnDaylight from '@/assets/photos/resort/lawn-in-daylight.jpg';
-import lawnEvening from '@/assets/photos/resort/lawn-and-main-building-evening.jpg';
-import lawnHills from '@/assets/photos/resort/lawn-with-hills-beyond.jpg';
-import upperCorridor from '@/assets/photos/resort/upper-corridor-wide.jpg';
-import upperVerandah from '@/assets/photos/resort/upper-verandah-over-courtyard.jpg';
-import guestRoomWoodenBed from '@/assets/photos/rooms/room-wooden-bed-recessed-lights.jpg';
+import grandStaircase from '@/assets/photos/resort/grand-staircase.jpg';
+import guestWing from '@/assets/photos/resort/guest-wing-balconies.jpg';
+import lawnGoldenHour from '@/assets/photos/resort/lawn-and-main-building-golden-hour.jpg';
+import lawnHills from '@/assets/photos/resort/lawn-and-hills-wide.jpg';
+import lawnOpenSky from '@/assets/photos/resort/lawn-under-open-sky.jpg';
+import mainBuildingSky from '@/assets/photos/resort/main-building-under-open-sky.jpg';
+import mainBuildingWalkway from '@/assets/photos/resort/main-building-and-covered-walkway.jpg';
+import pavilion from '@/assets/photos/resort/pavilion-overlooking-lawn.jpg';
+import reception from '@/assets/photos/resort/reception.jpg';
+import corridorCourtyard from '@/assets/photos/resort/upper-corridor-courtyard-view.jpg';
+import corridorLong from '@/assets/photos/resort/upper-corridor-long-view.jpg';
+import walkwaySunset from '@/assets/photos/resort/walkway-at-sunset.jpg';
+import doubleRoomWoodenBed from '@/assets/photos/rooms/double-room-wooden-bed.jpg';
 import fourBedside from '@/assets/photos/rooms/four-person-bedside-table.jpg';
 import fourCeiling from '@/assets/photos/rooms/four-person-ceiling-lights.jpg';
 import fourTelevision from '@/assets/photos/rooms/four-person-television.jpg';
@@ -22,11 +30,10 @@ import fourWallFan from '@/assets/photos/rooms/four-person-wall-fan.jpg';
 import fourWardrobe from '@/assets/photos/rooms/four-person-wardrobe-and-curtains.jpg';
 import fourWide from '@/assets/photos/rooms/four-person-wide-view.jpg';
 import fourLinens from '@/assets/photos/rooms/four-person-white-linens.jpg';
-import sixBalcony from '@/assets/photos/rooms/six-person-balcony-terrace.jpg';
-import sixMultiBed from '@/assets/photos/rooms/six-person-multi-bed.jpg';
+import balconyTerrace from '@/assets/photos/rooms/six-person-balcony-terrace.jpg';
 import suiteHeart from '@/assets/photos/rooms/suite-bed-heart-towel.jpg';
-import suiteLounge from '@/assets/photos/rooms/suite-lounge-sofa.jpg';
 import suiteLoungeBedroom from '@/assets/photos/rooms/suite-lounge-and-bedroom.jpg';
+import suiteLounge from '@/assets/photos/rooms/suite-lounge-sofa.jpg';
 import suiteTowelArt from '@/assets/photos/rooms/suite-towel-art-detail.jpg';
 import twoAcDouble from '@/assets/photos/rooms/two-person-ac-double-bed.jpg';
 import twoAcBalconyLight from '@/assets/photos/rooms/two-person-ac-room-balcony-light.jpg';
@@ -47,46 +54,86 @@ export interface Photo {
 
 /** Every photograph on the site. Captions describe only what the picture shows. */
 export const photos = {
-  // Grounds
-  lawnEvening: {
-    image: lawnEvening,
-    alt: 'The two-storey main building of Samisthi Aranya Resorts beside a broad green lawn in the evening light',
-    caption: 'The main building and central lawn at golden hour',
+  // Grounds and architecture
+  lawnGoldenHour: {
+    image: lawnGoldenHour,
+    alt: 'The two-storey main building of Samisthi Aranya Resorts across a wide green lawn in warm evening light',
+    caption: 'The main building and lawn at golden hour',
   },
-  lawnDaylight: {
-    image: lawnDaylight,
-    alt: 'Daylight view across the green lawn towards the resort wing',
-    caption: 'The lawn in full daylight, room for cricket and volleyball',
+  mainBuildingSky: {
+    image: mainBuildingSky,
+    alt: 'The main building and lawn under a wide sky streaked with clouds',
+    caption: 'Open skies over the main building',
   },
   lawnHills: {
     image: lawnHills,
-    alt: 'Green lawn at the resort with low hills on the horizon',
-    caption: 'Low hills beyond the lawn',
+    alt: 'A broad green lawn stretching towards the resort wings and low hills',
+    caption: 'The lawn, with the hills beyond',
+  },
+  lawnOpenSky: {
+    image: lawnOpenSky,
+    alt: 'The resort lawn and guest wing under a clear blue sky',
+    caption: 'Room to roam on the lawn',
+  },
+  mainBuildingWalkway: {
+    image: mainBuildingWalkway,
+    alt: 'The main building joined to a long covered walkway beside the garden',
+    caption: 'The main building and its covered walkway',
+  },
+  guestWing: {
+    image: guestWing,
+    alt: 'The guest wing with a row of private balconies on the upper floor',
+    caption: 'Balconies along the guest wing',
+  },
+  walkwaySunset: {
+    image: walkwaySunset,
+    alt: 'The sun setting beyond the lawn, seen from under a covered walkway with planted beds',
+    caption: 'Sunset from the garden walkway',
+  },
+  checkeredWalkway: {
+    image: checkeredWalkway,
+    alt: 'A long covered walkway with a black and ivory checkered floor running beside the lawn',
+    caption: 'The checkered garden walkway',
+  },
+  pavilion: {
+    image: pavilion,
+    alt: 'A shaded checkered-floor pavilion with seating that looks onto the lawn',
+    caption: 'A shaded pavilion over the lawn',
+  },
+  entrancePorch: {
+    image: entrancePorch,
+    alt: 'The entrance porch framed by carved wooden pillars, looking down a checkered courtyard to a gazebo',
+    caption: 'The entrance, framed in carved wood',
+  },
+  entranceGazebo: {
+    image: entranceGazebo,
+    alt: 'The entrance courtyard with a checkered floor leading to a tiled gazebo',
+    caption: 'The arrival courtyard',
+  },
+  corridorLong: {
+    image: corridorLong,
+    alt: 'A long, bright upper-floor corridor with black railings overlooking the courtyard',
+    caption: 'The upper corridor in morning light',
+  },
+  corridorCourtyard: {
+    image: corridorCourtyard,
+    alt: 'An upper-floor corridor with polished floors looking over the green courtyard',
+    caption: 'Looking over the courtyard',
+  },
+  grandStaircase: {
+    image: grandStaircase,
+    alt: 'A wide granite staircase with a black railing rising from the lobby',
+    caption: 'The main staircase',
+  },
+  reception: {
+    image: reception,
+    alt: 'The reception with a white marble-finish desk in a bright lobby',
+    caption: 'The reception desk',
   },
   facadeNight: {
     image: facadeNight,
     alt: 'The resort building lit with warm string lights at night',
     caption: 'The resort lit up in the evening',
-  },
-  coveredWalkway: {
-    image: coveredWalkway,
-    alt: 'Long covered walkway with a black and white checkered floor running along the garden',
-    caption: 'A covered walkway beside the garden',
-  },
-  coveredPavilion: {
-    image: coveredPavilion,
-    alt: 'Shaded checkered-floor pavilion with seating, overlooking the lawn',
-    caption: 'Shaded seating that looks onto the lawn',
-  },
-  upperVerandah: {
-    image: upperVerandah,
-    alt: 'Open upper-floor verandah with railings overlooking the central courtyard',
-    caption: 'The upper verandah over the courtyard',
-  },
-  upperCorridor: {
-    image: upperCorridor,
-    alt: 'Wide, bright upper-floor corridor with polished floors and courtyard railings',
-    caption: 'A bright corridor leading to the upper-floor rooms',
   },
 
   // Pool
@@ -124,6 +171,11 @@ export const photos = {
     alt: 'Two-person AC room with a double bed, split AC, wardrobe and wall-mounted television',
     caption: 'Two-person AC room: double bed, wardrobe and television',
   },
+  doubleRoomWoodenBed: {
+    image: doubleRoomWoodenBed,
+    alt: 'A spacious double room with a wooden bed, bedside table and long curtains',
+    caption: 'A spacious double room with a wooden bed',
+  },
   twoAcWide: {
     image: twoAcWide,
     alt: 'Wide view of a two-person AC room with a double bed, curtains and a seating corner',
@@ -159,10 +211,10 @@ export const photos = {
     alt: 'Balcony with two chairs and a table, and a wide field view beyond the railing',
     caption: 'A sit-out with a wide, open view',
   },
-  guestRoomWoodenBed: {
-    image: guestRoomWoodenBed,
-    alt: 'Spacious guest room with a wooden double bed and recessed ceiling lights',
-    caption: 'A spacious guest room with a wooden double bed',
+  balconyTerrace: {
+    image: balconyTerrace,
+    alt: 'Covered balcony with a table and chairs overlooking green fields',
+    caption: 'A covered balcony terrace',
   },
 
   // Four-person rooms
@@ -205,18 +257,6 @@ export const photos = {
     image: fourTelevision,
     alt: 'Four-person room with a wall-mounted television facing the beds',
     caption: 'Television facing the beds',
-  },
-
-  // Six-person room
-  sixMultiBed: {
-    image: sixMultiBed,
-    alt: 'Six-person room with several beds, a split AC and a television panel',
-    caption: 'Six-person room with a multi-bed layout',
-  },
-  sixBalcony: {
-    image: sixBalcony,
-    alt: 'Covered balcony with a table and chairs overlooking green fields',
-    caption: 'A covered balcony terrace',
   },
 
   // Suite

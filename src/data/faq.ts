@@ -47,6 +47,12 @@ export const FAQS: FaqEntry[] = [
       'Cricket, football, volleyball and garden games on the lawn, using the resort’s equipment or your own at no extra charge. A campfire can be arranged on request for special occasions.',
   },
   {
+    id: 'safari',
+    question: 'Can you arrange a jungle safari?',
+    answer:
+      'Yes. The resort arranges jungle safaris into the Amrabad Tiger Reserve. The safari is paid separately from your room, and the team will share timings and details when you book.',
+  },
+  {
     id: 'whole-resort',
     question: 'Can we book the whole resort for an event?',
     answer: `Yes. With ${TOTAL_ROOMS} rooms for up to ${TOTAL_GUESTS} guests, a conference hall and open lawns, the resort suits weddings, family gatherings, birthdays and corporate outings. Exclusive hire is quoted individually, indicatively ${RESORT.wholeResort.rangeDisplay} depending on your dates and guest count.`,

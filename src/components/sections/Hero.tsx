@@ -77,7 +77,7 @@ export function Hero() {
               className="absolute inset-0 translate-x-4 translate-y-4 rounded-t-full rounded-b-[2rem] border border-gold/60 lg:left-10"
             />
             <Picture
-              photo={photos.lawnEvening}
+              photo={photos.lawnGoldenHour}
               priority
               sizes="(min-width: 1024px) 560px, (min-width: 448px) 448px, 100vw"
               className="relative aspect-[4/5] rounded-t-full rounded-b-[2rem] shadow-lift"

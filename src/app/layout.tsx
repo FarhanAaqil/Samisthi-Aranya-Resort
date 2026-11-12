@@ -7,6 +7,7 @@ import { Reveal } from '@/components/layout/Reveal';
 import { ScrollEffects } from '@/components/layout/ScrollEffects';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { RESORT } from '@/data/resort';
+import { TOTAL_ROOMS } from '@/data/rooms';
 import { getSiteUrl, isIndexable } from '@/lib/site';
 
 import './globals.css';
@@ -27,8 +28,7 @@ const dmSans = DM_Sans({
 
 const siteUrl = getSiteUrl();
 
-const description =
-  'A nature retreat near Mannanur on the Srisailam highway. 23 AC and Non-AC rooms and suites, a 24-hour pool and rain dance, green lawns and pure vegetarian dining, close to Srisailam Dam View Point and Amrabad Tiger Reserve.';
+const description = `A nature retreat on the edge of the Nallamala forest near Mannanur. ${TOTAL_ROOMS} AC and Non-AC rooms and suites, a 24-hour pool and rain dance, jungle safaris into the Amrabad Tiger Reserve and pure vegetarian dining, close to Srisailam Dam View Point.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl ?? 'http://localhost:3000'),

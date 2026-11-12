@@ -59,8 +59,8 @@ test.describe('home page', () => {
     await expect(firstCardPrice).toHaveText('₹2,500');
 
     const totals = page.locator('#rooms tfoot');
-    await expect(totals).toContainText('Up to 68');
-    await expect(totals).toContainText('23');
+    await expect(totals).toContainText('Up to 56');
+    await expect(totals).toContainText('21');
   });
 
   test('room photo viewer opens, steps with the arrow keys and returns focus', async ({
