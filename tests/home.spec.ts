@@ -163,6 +163,22 @@ test.describe('home page', () => {
     await expect(first).not.toHaveAttribute('open', '');
   });
 
+  test('a section reached from the menu is visible straight away', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Uses the desktop navigation.');
+    await page.goto('/');
+    await page
+      .getByRole('navigation', { name: 'Primary' })
+      .getByRole('link', { name: 'Celebrations' })
+      .click();
+
+    const heading = page.locator('#events h2');
+    await expect(heading).toBeInViewport();
+    const opacity = await heading.evaluate(
+      (el) => getComputedStyle(el.closest('[data-reveal]') ?? el).opacity,
+    );
+    expect(opacity).toBe('1');
+  });
+
   test('the first Tab stop is the skip link', async ({ page, isMobile }) => {
     test.skip(isMobile, 'Keyboard-only behaviour.');
     await page.goto('/');

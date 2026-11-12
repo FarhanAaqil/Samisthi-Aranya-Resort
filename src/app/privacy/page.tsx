@@ -11,16 +11,18 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy" updated="10 November 2026">
+    <LegalPage title="Privacy" updated="12 November 2026">
       <p>
-        This website is an information and enquiry page for {RESORT.name}. It does not have
-        accounts, forms, online payments or advertising, and it does not set cookies.
+        This website is an information and enquiry page for {RESORT.name}. It has no accounts,
+        online payments or advertising, and it does not set cookies.
       </p>
 
       <h2>What we collect</h2>
       <p>
-        Nothing is collected through the site itself. When you call or message the resort, we see
-        the number you contact us from and whatever you choose to tell us, and we use it only to
+        Nothing is collected through the site itself. The availability form does not send anything
+        to us or store anything: it only writes your dates, guests and room choice into a WhatsApp
+        message, which you can read and edit before sending. When you call or message the resort, we
+        see the number you contact us from and whatever you choose to tell us, and we use it only to
         answer your enquiry and manage your booking.
       </p>
 
