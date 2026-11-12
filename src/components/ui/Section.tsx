@@ -1,18 +1,13 @@
 import { cn } from '@/lib/cn';
 import { Container } from './Container';
 
-type Tone = 'ivory' | 'paper' | 'stone' | 'forest' | 'sand' | 'petal' | 'clay' | 'wine';
+type Tone = 'ivory' | 'paper' | 'stone' | 'forest';
 
 const tones: Record<Tone, string> = {
   ivory: 'bg-ivory text-ink',
   paper: 'bg-paper text-ink',
   stone: 'bg-stone text-ink',
   forest: 'on-dark bg-forest text-ivory',
-  // Earlier names, mapped onto the new palette until every section moves over.
-  sand: 'bg-ivory text-ink',
-  petal: 'bg-paper text-ink',
-  clay: 'bg-stone text-ink',
-  wine: 'on-dark bg-forest text-ivory',
 };
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {

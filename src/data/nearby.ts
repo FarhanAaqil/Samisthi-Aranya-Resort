@@ -19,7 +19,7 @@ export const NEARBY_PLACES: NearbyPlace[] = [
   {
     id: 'srisailam-dam-view-point',
     name: 'Srisailam Dam View Point',
-    kind: 'The best-known sight nearby',
+    kind: 'Dam viewpoint',
     description:
       'The well-known viewpoint over the Srisailam dam, and the one most guests head out to first.',
     directionsUrl: directionsTo(16.0856741, 78.8995965),

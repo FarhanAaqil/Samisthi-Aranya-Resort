@@ -26,15 +26,6 @@
   --color-gold-light: #d8bc7a;
   --color-gold-deep: #7a5a1c;
 
-  /* Earlier names, kept only until every section moves to the new tokens. */
-  --color-sand: #f6f2ea;
-  --color-petal: #fbf8f2;
-  --color-clay: #ece5d8;
-  --color-wine: #12351f;
-  --color-wine-deep: #08230f;
-  --color-rose: #d8bc7a;
-  --color-rose-soft: #ece5d8;
-
   --font-display: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   --font-sans: var(--font-jost), system-ui, sans-serif;
   --font-caps: var(--font-cinzel), 'Cinzel', Georgia, serif;

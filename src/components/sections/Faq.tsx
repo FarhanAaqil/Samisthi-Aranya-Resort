@@ -1,33 +1,42 @@
-import { ChevronDown } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { FAQS } from '@/data/faq';
 
-/** Native <details> keeps the answers readable without JavaScript and keyboard-accessible by default. */
+/** Native <details> keeps answers readable without JavaScript and keyboard-friendly by default. */
 export function Faq() {
   return (
-    <Section id="faq" tone="sand" containerSize="narrow">
-      <SectionHeading align="center" eyebrow="Good to know" title="Questions guests often ask" />
+    <Section id="faq" tone="ivory">
+      <div className="grid gap-14 lg:grid-cols-12">
+        <SectionHeading
+          eyebrow="Good to know"
+          title="Questions guests often ask"
+          className="lg:col-span-4"
+        />
 
-      <div className="mt-12 space-y-3" data-reveal>
-        {FAQS.map((faq, index) => (
-          <details
-            key={faq.id}
-            name="faq"
-            open={index === 0}
-            className="group rounded-2xl border border-wine/12 bg-petal shadow-soft open:border-wine/25"
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-5 font-display text-xl font-semibold text-wine marker:hidden [&::-webkit-details-marker]:hidden">
-              {faq.question}
-              <ChevronDown
-                className="size-5 shrink-0 text-gold transition-transform duration-300 group-open:rotate-180 motion-reduce:transition-none"
-                aria-hidden="true"
-              />
-            </summary>
-            <p className="px-6 pb-6 text-ink-soft">{faq.answer}</p>
-          </details>
-        ))}
+        <div className="border-t border-ink/15 lg:col-span-8" data-reveal>
+          {FAQS.map((faq, index) => (
+            <details
+              key={faq.id}
+              name="faq"
+              open={index === 0}
+              className="group border-b border-ink/15"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 font-display text-[1.45rem] leading-snug text-forest marker:hidden [&::-webkit-details-marker]:hidden">
+                {faq.question}
+                <Plus
+                  className="size-5 shrink-0 text-gold transition-transform duration-300 group-open:rotate-45 motion-reduce:transition-none"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              </summary>
+              <p className="max-w-2xl pb-7 leading-relaxed font-light text-ink-soft">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
       </div>
     </Section>
   );

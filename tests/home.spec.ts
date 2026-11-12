@@ -2,7 +2,15 @@ import { expect, test } from '@playwright/test';
 
 const PHONE_TEL = 'tel:+917981583940';
 const WHATSAPP_PREFIX = 'https://wa.me/917981583940';
-const SECTIONS = ['#resort', '#rooms', '#experiences', '#gallery', '#nearby', '#contact'];
+const SECTIONS = [
+  '#resort',
+  '#rooms',
+  '#experiences',
+  '#explore',
+  '#gallery',
+  '#events',
+  '#contact',
+];
 
 test.describe('home page', () => {
   test('loads cleanly with one h1 and no console errors', async ({ page }) => {
@@ -15,7 +23,9 @@ test.describe('home page', () => {
     await page.goto('/');
 
     await expect(page).toHaveTitle(/Samisthi Aranya Resorts/);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Samisthi Aranya Resorts');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+      /Samisthi Aranya Resorts\s+Breathe Nallamala/,
+    );
     expect(problems).toEqual([]);
   });
 
@@ -92,19 +102,14 @@ test.describe('home page', () => {
     await expect(dialog).toBeHidden();
   });
 
-  test('rates switch between AC and Non-AC and the totals add up', async ({ page }) => {
+  test('room rates are shown for AC and Non-AC and the totals add up', async ({ page }) => {
     await page.goto('/#rooms');
-    const firstCardPrice = page.locator('#rooms article').first().locator('p.font-display').first();
-
-    await expect(firstCardPrice).toHaveText('₹2,500');
-    await page.getByRole('button', { name: 'Non-AC' }).click();
-    await expect(firstCardPrice).toHaveText('₹1,500');
-    await page.getByRole('button', { name: 'AC', exact: true }).click();
-    await expect(firstCardPrice).toHaveText('₹2,500');
-
-    const totals = page.locator('#rooms tfoot');
-    await expect(totals).toContainText('Up to 56');
-    await expect(totals).toContainText('21');
+    const twoPerson = page.locator('#rooms article').first();
+    await expect(twoPerson.getByRole('heading', { level: 3 })).toHaveText('Two-Person Room');
+    await expect(twoPerson.locator('dd').nth(0)).toHaveText('₹2,500');
+    await expect(twoPerson.locator('dd').nth(1)).toHaveText('₹1,500');
+    await expect(page.locator('#rooms article')).toHaveCount(3);
+    await expect(page.locator('#rooms')).toContainText('21 rooms for up to 56 guests');
   });
 
   test('room photo viewer opens, steps with the arrow keys and returns focus', async ({
@@ -129,18 +134,22 @@ test.describe('home page', () => {
     await expect(trigger).toBeFocused();
   });
 
-  test('gallery filters narrow the photos', async ({ page }) => {
+  test('the gallery preview opens the whole collection', async ({ page }) => {
     await page.goto('/#gallery');
-    const photos = page.locator('#gallery ul > li');
+    await expect(page.locator('#gallery ul > li')).toHaveCount(4);
 
-    const total = await photos.count();
-    expect(total).toBeGreaterThan(10);
+    await page
+      .getByRole('button', { name: /^View all \d+ photos$/ })
+      .first()
+      .click();
+    const dialog = page.getByRole('dialog', { name: 'Samisthi Aranya in photos' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByText(/^Photo 1 of \d+$/)).toBeVisible();
 
-    await page.getByRole('button', { name: 'Pool', exact: true }).click();
-    await expect(photos).toHaveCount(3);
-
-    await page.getByRole('button', { name: 'All', exact: true }).click();
-    await expect(photos).toHaveCount(total);
+    await dialog.getByRole('button', { name: 'Next photo' }).click();
+    await expect(dialog.getByText(/^Photo 2 of \d+$/)).toBeVisible();
+    await dialog.getByRole('button', { name: 'Close photo viewer' }).click();
+    await expect(dialog).toBeHidden();
   });
 
   test('FAQ answers open one at a time', async ({ page }) => {
@@ -169,7 +178,7 @@ test.describe('home page', () => {
     const menu = page.getByRole('navigation', { name: 'Mobile' });
     await expect(menu).toBeVisible();
 
-    await menu.getByRole('link', { name: 'Rooms' }).click();
+    await menu.getByRole('link', { name: 'Stay' }).click();
     await expect(menu).toBeHidden();
     await expect(page.locator('#rooms')).toBeInViewport();
   });

@@ -17,7 +17,7 @@ export default function NotFound() {
         <p className="mt-10 text-xs font-semibold tracking-[0.22em] text-gold-deep uppercase">
           Page not found
         </p>
-        <h1 className="mt-3 font-display text-4xl font-semibold text-balance text-wine sm:text-5xl">
+        <h1 className="mt-3 font-display text-4xl font-semibold text-balance text-forest sm:text-5xl">
           This path leads back to the resort
         </h1>
         <p className="mx-auto mt-4 max-w-md text-ink-soft">
