@@ -14,9 +14,9 @@ import { getSiteUrl, isIndexable } from '@/lib/site';
 
 import './globals.css';
 
+// Variable fonts: one file per style covers every weight used on the page.
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
   display: 'swap',
@@ -24,7 +24,6 @@ const cormorant = Cormorant_Garamond({
 
 const jost = Jost({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
   variable: '--font-jost',
   display: 'swap',
 });
