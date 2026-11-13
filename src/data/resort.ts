@@ -5,6 +5,8 @@
 export const RESORT = {
   name: 'Samisthi Aranya Resorts',
   tagline: 'Where Nature Meets Luxury.',
+  /** The line from the logo, used as the headline. */
+  motto: 'Breathe Nallamala',
   locality: 'Mannanur, on the Srisailam highway, Telangana',
   coordinates: { latitude: 16.3505042, longitude: 78.7507832 },
 
@@ -14,6 +16,8 @@ export const RESORT = {
     whatsappNumber: '917981583940',
     welcomeMessage:
       'Hello Samisthi Aranya Resorts team, I would like to enquire about room availability and tariffs for an upcoming stay.',
+    safariMessage:
+      'Hello Samisthi Aranya Resorts, I would like to know more about the jungle safari into the Amrabad Tiger Reserve.',
     eventMessage:
       'Hello Samisthi Aranya Resorts, I would like a custom quote for an event or an exclusive whole-resort booking.',
   },
@@ -40,8 +44,9 @@ export const RESORT = {
     ],
   },
 
-  /** Set NEXT_PUBLIC_GOOGLE_REVIEW_URL once the owner has the write-a-review link. */
-  googleReviewUrl: process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL ?? '',
+  /** Google's write-a-review link for the resort. NEXT_PUBLIC_GOOGLE_REVIEW_URL overrides it. */
+  googleReviewUrl:
+    process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL || 'https://g.page/r/CZvWdC0fG1SoEAE/review',
 
   /** Leave empty until the owner confirms the postal line. */
   postalAddress: '',

@@ -59,12 +59,12 @@ export function PhotoViewer({ title, photos, index, onIndexChange, onClose }: Ph
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
-      className="m-auto max-h-[94vh] w-[min(96vw,60rem)] overflow-hidden rounded-3xl bg-petal p-0 text-ink shadow-lift backdrop:bg-ink/75 backdrop:backdrop-blur-sm"
+      className="m-auto max-h-[96vh] w-[min(96vw,68rem)] overflow-hidden border border-brass/30 bg-olive-deep p-0 text-cream shadow-lift backdrop:bg-olive-night/92"
     >
       <div className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
         <div className="min-w-0">
-          <h2 className="truncate font-display text-2xl font-semibold text-wine">{title}</h2>
-          <p className="text-sm text-ink-soft">
+          <h2 className="truncate font-display text-2xl text-cream">{title}</h2>
+          <p className="text-sm text-cream-soft">
             Photo {index + 1} of {photos.length}
           </p>
         </div>
@@ -72,13 +72,13 @@ export function PhotoViewer({ title, photos, index, onIndexChange, onClose }: Ph
           type="button"
           onClick={onClose}
           aria-label="Close photo viewer"
-          className="grid size-11 shrink-0 place-items-center rounded-full border border-wine/30 text-wine transition-colors hover:bg-wine/8"
+          className="grid size-11 shrink-0 place-items-center border border-cream/25 text-cream transition-colors hover:border-brass hover:text-brass-light"
         >
           <X className="size-5" aria-hidden="true" />
         </button>
       </div>
 
-      <div className="relative h-[52vh] bg-clay sm:h-[58vh]">
+      <div className="relative h-[56vh] bg-olive-night sm:h-[64vh]">
         <Image
           key={photo.alt}
           src={photo.image}
@@ -93,7 +93,7 @@ export function PhotoViewer({ title, photos, index, onIndexChange, onClose }: Ph
               type="button"
               onClick={() => step(-1)}
               aria-label="Previous photo"
-              className="absolute top-1/2 left-3 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-petal/90 text-wine shadow-soft transition-colors hover:bg-petal"
+              className="absolute top-1/2 left-3 grid size-11 -translate-y-1/2 place-items-center bg-olive-deep/90 text-cream transition-colors hover:bg-olive-deep"
             >
               <ChevronLeft className="size-5" aria-hidden="true" />
             </button>
@@ -101,7 +101,7 @@ export function PhotoViewer({ title, photos, index, onIndexChange, onClose }: Ph
               type="button"
               onClick={() => step(1)}
               aria-label="Next photo"
-              className="absolute top-1/2 right-3 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-petal/90 text-wine shadow-soft transition-colors hover:bg-petal"
+              className="absolute top-1/2 right-3 grid size-11 -translate-y-1/2 place-items-center bg-olive-deep/90 text-cream transition-colors hover:bg-olive-deep"
             >
               <ChevronRight className="size-5" aria-hidden="true" />
             </button>
@@ -110,7 +110,7 @@ export function PhotoViewer({ title, photos, index, onIndexChange, onClose }: Ph
       </div>
 
       <div className="px-5 pt-4 pb-5 sm:px-6">
-        <p className="text-sm text-ink-soft">{photo.caption}</p>
+        <p className="text-sm text-cream-soft">{photo.caption}</p>
         {many && (
           <ul className="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="All photos">
             {photos.map((item, i) => (
@@ -121,8 +121,8 @@ export function PhotoViewer({ title, photos, index, onIndexChange, onClose }: Ph
                   aria-label={`Show photo ${i + 1}: ${item.caption}`}
                   aria-current={i === index ? 'true' : undefined}
                   className={cn(
-                    'relative block h-14 w-[4.5rem] overflow-hidden rounded-lg ring-2 ring-offset-2 ring-offset-petal transition',
-                    i === index ? 'ring-wine' : 'opacity-70 ring-transparent hover:opacity-100',
+                    'relative block h-14 w-[4.5rem] overflow-hidden ring-2 ring-offset-2 ring-offset-olive-deep transition',
+                    i === index ? 'ring-brass' : 'opacity-60 ring-transparent hover:opacity-100',
                   )}
                 >
                   <Image src={item.image} alt="" fill sizes="72px" className="object-cover" />

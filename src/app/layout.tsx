@@ -1,34 +1,37 @@
 import type { Metadata, Viewport } from 'next';
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
+import { Bodoni_Moda, Jost } from 'next/font/google';
 
+import { BookingBar } from '@/components/booking/BookingBar';
+import { BookingProvider } from '@/components/booking/BookingProvider';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { Reveal } from '@/components/layout/Reveal';
 import { ScrollEffects } from '@/components/layout/ScrollEffects';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { RESORT } from '@/data/resort';
+import { TOTAL_ROOMS } from '@/data/rooms';
 import { getSiteUrl, isIndexable } from '@/lib/site';
 
 import './globals.css';
 
-const cormorant = Cormorant_Garamond({
+// Variable fonts: one file per style covers every weight used on the page.
+const bodoni = Bodoni_Moda({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
-  variable: '--font-cormorant',
+  axes: ['opsz'],
+  variable: '--font-bodoni',
   display: 'swap',
 });
 
-const dmSans = DM_Sans({
+const jost = Jost({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  variable: '--font-jost',
   display: 'swap',
 });
 
 const siteUrl = getSiteUrl();
 
-const description =
-  'A nature retreat near Mannanur on the Srisailam highway. 23 AC and Non-AC rooms and suites, a 24-hour pool and rain dance, green lawns and pure vegetarian dining, close to Srisailam Dam View Point and Amrabad Tiger Reserve.';
+const description = `A nature retreat on the edge of the Nallamala forest near Mannanur. ${TOTAL_ROOMS} AC and Non-AC rooms and suites, a 24-hour pool and rain dance, jungle safaris into the Amrabad Tiger Reserve and pure vegetarian dining, close to Srisailam Dam View Point.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl ?? 'http://localhost:3000'),
@@ -59,25 +62,28 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#f5e6dc',
+  themeColor: '#4a4a22',
   width: 'device-width',
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${bodoni.variable} ${jost.variable}`}>
+      <body className="pb-[calc(4rem+env(safe-area-inset-bottom))] font-sans antialiased lg:pb-[5.25rem]">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-wine focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-petal"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-brass focus:px-5 focus:py-3 focus:text-sm focus:text-bark"
         >
           Skip to content
         </a>
-        <ScrollEffects />
-        <Header />
-        {children}
-        <Footer />
+        <BookingProvider>
+          <ScrollEffects />
+          <Header />
+          {children}
+          <Footer />
+          <BookingBar />
+        </BookingProvider>
         <Reveal />
         <JsonLd />
       </body>

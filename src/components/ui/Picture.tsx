@@ -17,7 +17,7 @@ interface PictureProps {
 /** A photo that fills its frame. The frame must have a size, for example an aspect ratio. */
 export function Picture({ photo, sizes, priority, className, imageClassName }: PictureProps) {
   return (
-    <div className={cn('relative overflow-hidden bg-clay', className)}>
+    <div className={cn('relative overflow-hidden bg-olive-deep', className)}>
       <Image
         src={photo.image}
         alt={photo.alt}

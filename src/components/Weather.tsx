@@ -24,61 +24,67 @@ function describe(code: number): string {
 }
 
 /**
- * Current conditions at the resort. Loaded after the page is interactive so it can never hold
- * up the hero. It shows nothing at all if the service can’t be reached.
+ * Current conditions at the resort. Loaded once the browser is idle so it never competes with the
+ * hero image, and it shows nothing if the service is down.
  */
 export function Weather() {
   const [state, setState] = useState<WeatherState>({ status: 'loading' });
 
   useEffect(() => {
     const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 6000);
     const { latitude, longitude } = RESORT.coordinates;
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&timezone=Asia%2FKolkata`;
 
-    fetch(url, { signal: controller.signal })
-      .then((response) => {
-        if (!response.ok) throw new Error(`Weather request failed: ${response.status}`);
-        return response.json() as Promise<{
-          current?: { temperature_2m?: number; weather_code?: number };
-        }>;
-      })
-      .then(({ current }) => {
-        if (typeof current?.temperature_2m !== 'number') {
-          setState({ status: 'unavailable' });
-          return;
-        }
-        setState({
-          status: 'ready',
-          temperature: Math.round(current.temperature_2m),
-          condition: describe(current.weather_code ?? -1),
-        });
-      })
-      .catch(() => setState({ status: 'unavailable' }))
-      .finally(() => window.clearTimeout(timeout));
+    const load = () => {
+      const timeout = window.setTimeout(() => controller.abort(), 6000);
+      fetch(url, { signal: controller.signal })
+        .then((response) => {
+          if (!response.ok) throw new Error(`Weather request failed: ${response.status}`);
+          return response.json() as Promise<{
+            current?: { temperature_2m?: number; weather_code?: number };
+          }>;
+        })
+        .then(({ current }) => {
+          if (typeof current?.temperature_2m !== 'number') {
+            setState({ status: 'unavailable' });
+            return;
+          }
+          setState({
+            status: 'ready',
+            temperature: Math.round(current.temperature_2m),
+            condition: describe(current.weather_code ?? -1),
+          });
+        })
+        .catch(() => setState({ status: 'unavailable' }))
+        .finally(() => window.clearTimeout(timeout));
+    };
+
+    const idle = window.requestIdleCallback
+      ? window.requestIdleCallback(load, { timeout: 3000 })
+      : window.setTimeout(load, 1500);
 
     return () => {
-      window.clearTimeout(timeout);
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idle);
+      else window.clearTimeout(idle);
       controller.abort();
     };
   }, []);
 
-  // The wrapper keeps its height while loading so the hero doesn't shift.
   return (
-    <div className="min-h-10" aria-live="polite">
+    <div className="min-h-6 text-sm text-cream-soft" aria-live="polite">
       {state.status === 'ready' && (
-        <p className="inline-flex items-center gap-2.5 rounded-full border border-wine/20 bg-petal/80 py-2 pr-4 pl-3 text-sm text-ink-soft">
-          <CloudSun className="size-4 text-gold" aria-hidden="true" />
+        <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+          <CloudSun className="size-4 text-brass" aria-hidden="true" />
           <span>
-            Right now at the resort:{' '}
-            <strong className="font-semibold text-wine">{state.temperature}°C</strong>,{' '}
+            At the resort now:{' '}
+            <strong className="font-normal text-cream">{state.temperature}°C</strong>,{' '}
             {state.condition.toLowerCase()}
           </span>
           <a
             href="https://open-meteo.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs whitespace-nowrap text-ink-soft/80 underline decoration-wine/30 underline-offset-2 hover:text-wine"
+            className="text-xs text-cream-soft underline decoration-brass/60 underline-offset-2 hover:text-cream"
           >
             Open-Meteo
           </a>

@@ -1,86 +1,69 @@
-import { ArrowRight, Mountain, Trees, Waves } from 'lucide-react';
-
 import { Picture } from '@/components/ui/Picture';
 import { Section } from '@/components/ui/Section';
-import { SectionHeading } from '@/components/ui/SectionHeading';
 import { photos } from '@/data/photos';
+import { TOTAL_GUESTS, TOTAL_ROOMS } from '@/data/rooms';
 
-const qualities = [
-  {
-    icon: Trees,
-    title: 'Room to spread out',
-    text: 'A wide central lawn, shaded walkways and a courtyard that the rooms open onto.',
-  },
-  {
-    icon: Waves,
-    title: 'Water at any hour',
-    text: 'The pool and rain dance are open around the clock and included in your stay.',
-  },
-  {
-    icon: Mountain,
-    title: 'On the way to Srisailam',
-    text: 'Close to Srisailam Dam View Point and the Amrabad Tiger Reserve safari gate.',
-  },
+const facts = [
+  { value: `${TOTAL_ROOMS} rooms`, label: `Rooms and suites for up to ${TOTAL_GUESTS} guests` },
+  { value: '24 hours', label: 'Pool and rain dance, included in your stay' },
+  { value: 'Safaris', label: 'Into the Amrabad Tiger Reserve, arranged by the resort' },
+  { value: 'Pure veg', label: 'An on-site vegetarian restaurant' },
 ];
 
 export function ResortIntro() {
   return (
-    <Section id="resort" tone="petal">
-      <div className="grid items-center gap-14 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <SectionHeading
-            eyebrow="The resort"
-            title="A calm place to stop, stay and breathe"
-            lead="Set among open skies and low hills near Mannanur, Samisthi Aranya is built for slow, unhurried stays. Wide verandahs look over the courtyard, balconies face the fields, and the lawn is big enough for a proper game of cricket."
+    <Section id="resort" tone="olive" className="border-t border-cream/12">
+      <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-[1.15fr_1fr] items-end gap-4 lg:col-span-6" data-reveal>
+          <Picture
+            photo={photos.grandStaircase}
+            sizes="(min-width: 1024px) 26vw, 50vw"
+            className="aspect-[3/4]"
           />
-          <p className="mt-4 max-w-xl text-pretty text-ink-soft" data-reveal>
-            Come for a night with family, a celebration with friends, or a break on the road to
-            Srisailam. The resort team looks after every booking personally, from the first call to
-            check-out.
-          </p>
+          <Picture
+            photo={photos.corridorCourtyard}
+            sizes="(min-width: 1024px) 22vw, 45vw"
+            className="mb-14 aspect-[4/5]"
+            imageClassName="object-[40%_50%]"
+          />
+        </div>
 
-          <ul className="mt-9 space-y-6">
-            {qualities.map(({ icon: Icon, title, text }) => (
-              <li key={title} className="flex gap-4" data-reveal>
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-rose-soft/70 text-wine">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 className="font-display text-xl font-semibold text-wine">{title}</h3>
-                  <p className="mt-0.5 text-ink-soft">{text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <a
-            href="#gallery"
-            className="mt-9 inline-flex items-center gap-2 font-medium text-wine underline decoration-gold/60 underline-offset-4 transition-colors hover:text-wine-deep"
-          >
-            Walk the grounds in photos
-            <ArrowRight className="size-4" aria-hidden="true" />
+        <div className="lg:col-span-6" data-reveal>
+          <p className="caps text-brass-light">The resort</p>
+          <h2 className="mt-5 font-display text-[2.5rem] leading-[1.08] text-balance sm:text-[3.3rem]">
+            Where the road to Srisailam meets the forest
+          </h2>
+          <div className="mt-8 max-w-xl space-y-5 text-[1.05rem] leading-[1.85] text-cream-soft">
+            <p>
+              Samisthi Aranya sits among open skies and low hills near Mannanur, on the edge of the
+              Nallamala forest. Wide verandahs look over a green courtyard, balconies face the
+              fields, and the lawn turns gold every evening.
+            </p>
+            <p>
+              Come for a quiet night with family, a celebration with friends, or a safari into the
+              Amrabad Tiger Reserve. The resort team looks after every booking personally, from the
+              first call to check-out.
+            </p>
+          </div>
+          <a href="#gallery" className="caps text-link mt-9">
+            See the resort in photos
           </a>
         </div>
-
-        <div className="grid grid-cols-5 gap-4 lg:col-span-6" data-reveal>
-          <Picture
-            photo={photos.lawnDaylight}
-            sizes="(min-width: 1024px) 22vw, 40vw"
-            className="col-span-3 row-span-2 min-h-80 rounded-[2rem] shadow-soft"
-            imageClassName="object-[50%_60%]"
-          />
-          <Picture
-            photo={photos.coveredPavilion}
-            sizes="(min-width: 1024px) 15vw, 30vw"
-            className="col-span-2 aspect-square rounded-[2rem] shadow-soft"
-          />
-          <Picture
-            photo={photos.upperVerandah}
-            sizes="(min-width: 1024px) 15vw, 30vw"
-            className="col-span-2 aspect-[3/4] rounded-t-full rounded-b-[2rem] shadow-soft"
-          />
-        </div>
       </div>
+
+      <dl className="mt-24 grid grid-cols-2 border-t border-cream/15 lg:grid-cols-4" data-reveal>
+        {facts.map(({ value, label }) => (
+          <div
+            key={label}
+            className="flex flex-col border-b border-cream/15 py-8 pr-5 pl-5 odd:border-r odd:pl-0 sm:px-8 lg:border-r lg:border-b-0 lg:first:pl-0 lg:last:border-r-0"
+          >
+            <dt className="text-sm leading-snug text-cream-soft">{label}</dt>
+            <dd className="order-first mb-3 font-display text-[2.1rem] leading-none text-brass-light sm:text-[2.5rem]">
+              {value}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </Section>
   );
 }

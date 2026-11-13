@@ -2,7 +2,15 @@ import { expect, test } from '@playwright/test';
 
 const PHONE_TEL = 'tel:+917981583940';
 const WHATSAPP_PREFIX = 'https://wa.me/917981583940';
-const SECTIONS = ['#resort', '#rooms', '#experiences', '#gallery', '#nearby', '#contact'];
+const SECTIONS = [
+  '#resort',
+  '#rooms',
+  '#experiences',
+  '#explore',
+  '#gallery',
+  '#events',
+  '#contact',
+];
 
 test.describe('home page', () => {
   test('loads cleanly with one h1 and no console errors', async ({ page }) => {
@@ -15,7 +23,9 @@ test.describe('home page', () => {
     await page.goto('/');
 
     await expect(page).toHaveTitle(/Samisthi Aranya Resorts/);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Samisthi Aranya Resorts');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+      /Samisthi Aranya Resorts\s+Breathe Nallamala/,
+    );
     expect(problems).toEqual([]);
   });
 
@@ -42,25 +52,64 @@ test.describe('home page', () => {
     for (const href of whatsappLinks) expect(href.startsWith(WHATSAPP_PREFIX)).toBe(true);
   });
 
-  test('stays an enquiry site: no forms, no payments, no live availability', async ({ page }) => {
+  test('takes no payments and never claims live availability', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('form, input, textarea, select')).toHaveCount(0);
-    await expect(page.getByText(/available today|rooms left|book online|pay now/i)).toHaveCount(0);
+    await expect(
+      page.locator('input[type="password"], input[autocomplete^="cc-"], input[name*="card" i]'),
+    ).toHaveCount(0);
+    await expect(page.getByText(/available today|rooms left|pay now/i)).toHaveCount(0);
   });
 
-  test('rates switch between AC and Non-AC and the totals add up', async ({ page }) => {
+  test('the availability form opens WhatsApp with the request written out', async ({
+    page,
+    isMobile,
+  }) => {
+    await page.goto('/');
+    await page.evaluate(() => {
+      const opened: string[] = [];
+      (window as unknown as { __opened: string[] }).__opened = opened;
+      window.open = ((url?: string | URL) => {
+        opened.push(String(url));
+        return null;
+      }) as typeof window.open;
+    });
+
+    if (isMobile) await page.getByRole('button', { name: 'Book', exact: true }).click();
+    else await page.getByRole('button', { name: 'Check availability' }).first().click();
+
+    const dialog = page.getByRole('dialog', { name: 'Check availability' });
+    await expect(dialog).toBeVisible();
+
+    await dialog.getByLabel('Check-in').fill('2030-12-12');
+    await dialog.getByLabel('Check-out').fill('2030-12-11');
+    await dialog.getByRole('button', { name: 'Check on WhatsApp' }).click();
+    await expect(dialog.getByRole('alert')).toHaveText('Check-out needs to be after check-in.');
+
+    await dialog.getByLabel('Check-out').fill('2030-12-13');
+    await dialog.getByLabel('Guests').selectOption('2');
+    await dialog.getByLabel('Room').selectOption({ label: 'Suite' });
+    await dialog.getByRole('button', { name: 'Check on WhatsApp' }).click();
+
+    const opened = await page.evaluate(
+      () => (window as unknown as { __opened: string[] }).__opened,
+    );
+    expect(opened).toHaveLength(1);
+    const url = new URL(opened[0]);
+    expect(url.origin + url.pathname).toBe(WHATSAPP_PREFIX);
+    expect(url.searchParams.get('text')).toContain(
+      'the Suite from 12 Dec 2030 to 13 Dec 2030 (1 night) for 2 guests',
+    );
+    await expect(dialog).toBeHidden();
+  });
+
+  test('room rates are shown for AC and Non-AC and the totals add up', async ({ page }) => {
     await page.goto('/#rooms');
-    const firstCardPrice = page.locator('#rooms article').first().locator('p.font-display').first();
-
-    await expect(firstCardPrice).toHaveText('₹2,500');
-    await page.getByRole('button', { name: 'Non-AC' }).click();
-    await expect(firstCardPrice).toHaveText('₹1,500');
-    await page.getByRole('button', { name: 'AC', exact: true }).click();
-    await expect(firstCardPrice).toHaveText('₹2,500');
-
-    const totals = page.locator('#rooms tfoot');
-    await expect(totals).toContainText('Up to 68');
-    await expect(totals).toContainText('23');
+    const twoPerson = page.locator('#rooms article').first();
+    await expect(twoPerson.getByRole('heading', { level: 3 })).toHaveText('Two-Person Room');
+    await expect(twoPerson.locator('dd').nth(0)).toHaveText('₹2,500');
+    await expect(twoPerson.locator('dd').nth(1)).toHaveText('₹1,500');
+    await expect(page.locator('#rooms article')).toHaveCount(3);
+    await expect(page.locator('#rooms')).toContainText('21 rooms for up to 56 guests');
   });
 
   test('room photo viewer opens, steps with the arrow keys and returns focus', async ({
@@ -85,18 +134,22 @@ test.describe('home page', () => {
     await expect(trigger).toBeFocused();
   });
 
-  test('gallery filters narrow the photos', async ({ page }) => {
+  test('the gallery preview opens the whole collection', async ({ page }) => {
     await page.goto('/#gallery');
-    const photos = page.locator('#gallery ul > li');
+    await expect(page.locator('#gallery ul > li')).toHaveCount(4);
 
-    const total = await photos.count();
-    expect(total).toBeGreaterThan(10);
+    await page
+      .getByRole('button', { name: /^View all \d+ photos$/ })
+      .first()
+      .click();
+    const dialog = page.getByRole('dialog', { name: 'Samisthi Aranya in photos' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByText(/^Photo 1 of \d+$/)).toBeVisible();
 
-    await page.getByRole('button', { name: 'Pool', exact: true }).click();
-    await expect(photos).toHaveCount(3);
-
-    await page.getByRole('button', { name: 'All', exact: true }).click();
-    await expect(photos).toHaveCount(total);
+    await dialog.getByRole('button', { name: 'Next photo' }).click();
+    await expect(dialog.getByText(/^Photo 2 of \d+$/)).toBeVisible();
+    await dialog.getByRole('button', { name: 'Close photo viewer' }).click();
+    await expect(dialog).toBeHidden();
   });
 
   test('FAQ answers open one at a time', async ({ page }) => {
@@ -108,6 +161,19 @@ test.describe('home page', () => {
     await second.locator('summary').click();
     await expect(second).toHaveAttribute('open', '');
     await expect(first).not.toHaveAttribute('open', '');
+  });
+
+  test('a section reached from the menu is visible straight away', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Uses the desktop navigation.');
+    await page.goto('/');
+    await page.getByRole('banner').getByRole('link', { name: 'Celebrations' }).click();
+
+    const heading = page.locator('#events h2');
+    await expect(heading).toBeInViewport();
+    const opacity = await heading.evaluate(
+      (el) => getComputedStyle(el.closest('[data-reveal]') ?? el).opacity,
+    );
+    expect(opacity).toBe('1');
   });
 
   test('the first Tab stop is the skip link', async ({ page, isMobile }) => {
@@ -125,7 +191,7 @@ test.describe('home page', () => {
     const menu = page.getByRole('navigation', { name: 'Mobile' });
     await expect(menu).toBeVisible();
 
-    await menu.getByRole('link', { name: 'Rooms' }).click();
+    await menu.getByRole('link', { name: 'Stay' }).click();
     await expect(menu).toBeHidden();
     await expect(page.locator('#rooms')).toBeInViewport();
   });

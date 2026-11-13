@@ -36,7 +36,7 @@ export function ScrollEffects() {
   return (
     <>
       <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5">
-        <div ref={bar} className="h-full origin-left scale-x-0 bg-gold/80" />
+        <div ref={bar} className="h-full origin-left scale-x-0 bg-brass" />
       </div>
 
       <button
@@ -45,8 +45,8 @@ export function ScrollEffects() {
         aria-label="Back to top"
         tabIndex={showTop ? 0 : -1}
         className={cn(
-          'fixed right-5 bottom-5 z-30 grid size-12 place-items-center rounded-full bg-wine text-petal shadow-lift',
-          'transition-[opacity,transform] duration-300 hover:bg-wine-deep',
+          'fixed right-4 bottom-[calc(5rem+env(safe-area-inset-bottom))] z-20 grid size-11 place-items-center border border-brass/40 bg-olive-deep text-brass-light lg:right-6 lg:bottom-28',
+          'transition-[opacity,transform] duration-300 hover:bg-olive',
           showTop ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0',
         )}
       >

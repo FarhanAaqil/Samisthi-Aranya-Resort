@@ -1,83 +1,76 @@
+import { BookingButton } from '@/components/booking/BookingButton';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { RESORT } from '@/data/resort';
 import { ROOM_CATEGORIES, TOTAL_GUESTS, TOTAL_ROOMS } from '@/data/rooms';
+import { cn } from '@/lib/cn';
 import { formatINR } from '@/lib/format';
 
-import { RoomsShowcase } from './RoomsShowcase';
+import { RoomPhotos } from './RoomPhotos';
 
 export function Rooms() {
   return (
-    <Section id="rooms" tone="sand">
+    <Section id="rooms" tone="deep">
       <SectionHeading
-        eyebrow="Rooms and rates"
-        title="Four kinds of room, one simple rate card"
-        lead={`Every rate is per room for a 24-hour stay, with check-in at ${RESORT.stay.checkIn} and check-out at ${RESORT.stay.checkOut}. GST is included. Call or message the team to confirm availability for your dates.`}
+        align="center"
+        eyebrow="Stay"
+        title="Rooms & Suites"
+        lead={`${TOTAL_ROOMS} rooms for up to ${TOTAL_GUESTS} guests. Every rate is per room for a full 24 hours and includes GST, with check-in at ${RESORT.stay.checkIn} and check-out at ${RESORT.stay.checkOut}.`}
       />
 
-      <RoomsShowcase rooms={ROOM_CATEGORIES} />
+      <div className="mt-20 space-y-20 lg:space-y-28">
+        {ROOM_CATEGORIES.map((room, index) => (
+          <article
+            key={room.id}
+            className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16"
+            data-reveal
+          >
+            <div className={cn('lg:col-span-7', index % 2 === 1 && 'lg:order-2')}>
+              <RoomPhotos name={room.name} photos={room.photos} />
+            </div>
 
-      <div
-        role="region"
-        aria-label="All room rates"
-        // Focusable so keyboard users can scroll the table sideways on narrow screens.
-        tabIndex={0}
-        className="mt-12 overflow-x-auto rounded-[1.75rem] border border-wine/10 bg-petal shadow-soft"
-        data-reveal
-      >
-        <table className="w-full text-left text-sm">
-          <caption className="px-6 pt-5 pb-3 text-left font-display text-2xl font-semibold text-wine">
-            All rates at a glance
-          </caption>
-          <thead>
-            <tr className="border-y border-wine/12 text-xs tracking-[0.14em] text-ink-soft uppercase">
-              <th scope="col" className="px-4 py-3 font-semibold sm:px-6">
-                Room
-              </th>
-              <th scope="col" className="px-2 py-3 font-semibold sm:px-3">
-                Sleeps
-              </th>
-              <th scope="col" className="px-3 py-3 font-semibold max-sm:hidden">
-                Rooms
-              </th>
-              <th scope="col" className="px-2 py-3 text-right font-semibold sm:px-3">
-                AC
-              </th>
-              <th scope="col" className="px-4 py-3 text-right font-semibold sm:px-6">
-                Non-AC
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-wine/10">
-            {ROOM_CATEGORIES.map((room) => (
-              <tr key={room.id}>
-                <th scope="row" className="px-4 py-3.5 font-medium text-wine sm:px-6">
-                  {room.name}
-                </th>
-                <td className="px-2 py-3.5 text-ink-soft sm:px-3">{room.guests}</td>
-                <td className="px-3 py-3.5 text-ink-soft max-sm:hidden">{room.count}</td>
-                <td className="px-2 py-3.5 text-right font-semibold text-ink sm:px-3">
-                  {formatINR(room.acRate)}
-                </td>
-                <td className="px-4 py-3.5 text-right font-semibold text-ink sm:px-6">
-                  {formatINR(room.nonAcRate)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr className="border-t border-wine/12 bg-rose-soft/35 text-wine-deep">
-              <th scope="row" className="px-4 py-3.5 font-semibold sm:px-6">
-                The whole resort
-              </th>
-              <td className="px-2 py-3.5 font-semibold sm:px-3">Up to {TOTAL_GUESTS}</td>
-              <td className="px-3 py-3.5 font-semibold max-sm:hidden">{TOTAL_ROOMS}</td>
-              <td className="px-4 py-3.5 text-right text-xs sm:px-6" colSpan={2}>
-                Per room, per 24 hours, GST included
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+            <div className="lg:col-span-5">
+              <p className="caps text-brass-light">
+                {room.suits} · {room.count} {room.count === 1 ? 'room' : 'rooms'}
+              </p>
+              <h3 className="mt-4 font-display text-[2.4rem] leading-tight">{room.name}</h3>
+              <p className="mt-4 max-w-md text-[1.05rem] leading-[1.85] text-cream-soft">
+                {room.summary}
+              </p>
+
+              <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] text-cream">
+                {room.features.map((feature) => (
+                  <li key={feature} className="flex items-center gap-2.5">
+                    <span aria-hidden="true" className="size-1 rotate-45 bg-brass" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <dl className="mt-8 grid max-w-sm grid-cols-2 border-y border-cream/15">
+                <div className="py-4 pr-4">
+                  <dt className="caps text-[0.6rem] text-cream-soft">AC</dt>
+                  <dd className="figures mt-1 font-display text-[1.9rem] text-cream">
+                    {formatINR(room.acRate)}
+                  </dd>
+                </div>
+                <div className="border-l border-cream/15 py-4 pl-6">
+                  <dt className="caps text-[0.6rem] text-cream-soft">Non-AC</dt>
+                  <dd className="figures mt-1 font-display text-[1.9rem] text-cream">
+                    {formatINR(room.nonAcRate)}
+                  </dd>
+                </div>
+              </dl>
+              <p className="mt-3 text-sm text-cream-soft">
+                Sleeps {room.guests} · per room, 24 hours, GST included
+              </p>
+
+              <BookingButton room={room.id} className="mt-9">
+                Check availability
+              </BookingButton>
+            </div>
+          </article>
+        ))}
       </div>
     </Section>
   );

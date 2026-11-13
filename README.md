@@ -1,17 +1,20 @@
 # Samisthi Aranya Resorts
 
-Website for **Samisthi Aranya Resorts**, a nature retreat near Mannanur on the Srisailam highway in Telangana. _Where Nature Meets Luxury._
+Website for **Samisthi Aranya Resorts**, a retreat on the edge of the Nallamala forest near Mannanur, on the Srisailam highway in Telangana. _Breathe Nallamala. Where Nature Meets Luxury._
 
-It is a single, long landing page that shows the property, rooms and rates, facilities, photos, nearby places and FAQs, and sends guests to the resort team by phone or WhatsApp. There is **no online booking, no payment and no live availability** by design, and the tests check for that.
+Live: https://samisthiaranyaresort.vercel.app/ (a custom domain will be connected later).
+
+It is one long page: the resort, rooms and rates, experiences, the jungle safari and nearby places, a gallery, celebrations, FAQs and contact. Guests reach the resort team by phone or WhatsApp. **The site takes no bookings and no payments, and shows no live availability.** The availability form only writes a WhatsApp message for the guest to send.
 
 ## Stack
 
-- [Next.js](https://nextjs.org) 16 (App Router) with React 19 and TypeScript
-- [Tailwind CSS](https://tailwindcss.com) 4, with design tokens in `src/app/globals.css`
-- [lucide-react](https://lucide.dev) icons, `next/font` for Cormorant Garamond and DM Sans
+- [Next.js](https://nextjs.org) 16 (App Router), React 19 and TypeScript
+- [Tailwind CSS](https://tailwindcss.com) 4, with the design tokens in `src/app/globals.css`
+- `next/font` for Bodoni Moda (headlines and wordmark) and Jost (text and spaced capitals)
+- [lucide-react](https://lucide.dev) icons
 - ESLint 9, Prettier, Playwright and axe-core for checks
 
-Pages are statically generated. The only client-side code is the navigation, scroll effects, photo viewer, rate toggle, gallery filter and the small weather note.
+Every page is statically generated. The only code that runs in the browser is the header, the booking form, dialog and bars, the photo viewers, the scroll effects and the small weather note.
 
 ## Getting started
 
@@ -37,67 +40,75 @@ The first time you run the browser tests, install the browser with `npx playwrig
 
 ## Updating content
 
-Everything a guest reads lives in `src/data/`, so the owner's details can change without touching components.
+Everything a guest reads lives in `src/data/`, so details can change without touching the components.
 
-| File            | Holds                                                                       |
-| --------------- | --------------------------------------------------------------------------- |
-| `resort.ts`     | Phone and WhatsApp number, map link, check-in and out, whole-resort pricing |
-| `rooms.ts`      | Room categories, counts, AC and Non-AC rates, descriptions and photos       |
-| `facilities.ts` | Pool, lawns, rain dance, restaurant and the other facilities                |
-| `faq.ts`        | Questions and answers. Rates and totals are pulled in from `rooms.ts`       |
-| `nearby.ts`     | Nearby places and their directions links                                    |
-| `gallery.ts`    | Which photos appear in the gallery and under which filter                   |
-| `photos.ts`     | Every photograph with its alt text and caption                              |
+| File            | Holds                                                                                      |
+| --------------- | ------------------------------------------------------------------------------------------ |
+| `resort.ts`     | Name, taglines, phone and WhatsApp, WhatsApp messages, map link, stay times, event pricing |
+| `rooms.ts`      | Room categories, counts, AC and Non-AC rates, descriptions and photos                      |
+| `facilities.ts` | Pool, lawns, safari, rain dance, restaurant and the other facilities                       |
+| `nearby.ts`     | Nearby places and their directions links                                                   |
+| `faq.ts`        | Questions and answers. Rates and totals are pulled in from `rooms.ts`                      |
+| `gallery.ts`    | Which photos appear in the gallery, in order                                               |
+| `photos.ts`     | Every photograph with its alt text and caption                                             |
 
-Totals such as **23 rooms** and **68 guests** are calculated from the room list, so they cannot drift out of date.
+Totals such as **21 rooms** and **56 guests** are calculated from the room list, so they can't drift out of date. The room types offered in the availability form come from `rooms.ts` too.
 
-To add a photo, put the file in `src/assets/photos/`, import it in `photos.ts` with a description for the alt text, then reference it from the data file where it belongs.
+To add a photo, resize it to about 2000px on the long edge, strip its location metadata, and put it in `src/assets/photos/`. Import it in `photos.ts` with a description for the alt text, then reference it where it belongs. Images imported this way get their dimensions and a blur placeholder automatically, and Next serves them as AVIF or WebP at the right size.
 
 ## Design
 
-The palette keeps the brand's wine, rose and gold but sits them on a warm blush-sand canvas instead of the original obsidian one.
+**Safari Olive & Brass.** The colours were sampled from the resort's own photographs: the olive of its lawns and hills and the brass gold of its badge. Every surface is a rich olive ground with cream type. The layout follows luxury hotel sites: a centred wordmark between split navigation, an untinted hero photograph with the availability form resting on its edge, large alternating room rows, sharp corners, hairline rules and generous space.
 
-| Token       | Hex       | Used for                         |
-| ----------- | --------- | -------------------------------- |
-| `sand`      | `#F5E6DC` | Page background                  |
-| `petal`     | `#FBF0E9` | Raised cards and alternate bands |
-| `clay`      | `#EBD2C5` | Image placeholders               |
-| `ink`       | `#3A2230` | Body text                        |
-| `wine`      | `#682E4E` | Headings, buttons                |
-| `wine-deep` | `#4A1F38` | Footer and the events band       |
-| `rose`      | `#E79AB2` | Soft highlights                  |
-| `gold`      | `#B8892B` | Rules and icons, never text      |
-| `gold-deep` | `#6B4D0E` | Small gold labels                |
+| Token         | Hex       | Used for                                  |
+| ------------- | --------- | ----------------------------------------- |
+| `olive`       | `#4A4A22` | Main ground                               |
+| `olive-deep`  | `#2F2F15` | Alternate sections, booking bars, dialogs |
+| `olive-night` | `#23230F` | Footer                                    |
+| `cream`       | `#F4ECD8` | Text and headings                         |
+| `cream-soft`  | `#D8CFB2` | Secondary text                            |
+| `brass`       | `#D9B25E` | Buttons, rules, icons                     |
+| `brass-light` | `#E2C27A` | Labels and accents                        |
+| `bark`        | `#2A2810` | Text on brass buttons                     |
 
-Contrast ratios are noted next to the tokens in `globals.css`, and the axe scan in the test suite keeps them honest. Motion is limited to gentle fade-ups and image zooms, and respects the reduced-motion setting.
+Contrast ratios are noted next to the tokens in `globals.css`, and the axe scan in the test suite keeps them honest. Large figures such as prices and the phone number use the `figures` class, which picks a sturdier optical size of Bodoni so its hairlines stay visible on the dark ground.
 
-The logo is redrawn as a vector in `src/components/ui/Logo.tsx`. The original concept image and the palette reference are kept in `docs/brand/`.
+The full badge (`src/assets/brand/`) appears in the footer as a framed crest; the header uses a text wordmark because the badge's detail is lost at small sizes.
+
+Motion is limited to short fade-ins and slow image zooms. Fade-ins start before a section arrives, and anything reached from the menu appears at once. Everything respects the reduced-motion setting.
+
+## Booking flow
+
+- The **Check availability** buttons open a dialog with check-in, check-out, guests and room type.
+- On large screens the same form rests on the edge of the hero photograph, and again in a bar that slides up from the bottom once the hero has scrolled away.
+- On phones a bar pinned to the bottom always offers **Call**, **WhatsApp** and **Book**.
+- Sending opens WhatsApp with a message such as _"I'd like to check availability for the Suite from 12 Dec 2026 to 13 Dec 2026 (1 night) for 2 guests."_ Nothing is stored or sent anywhere else.
 
 ## Quality checks and workflow
 
 GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `master` and every pull request:
 
 1. **Lint, types and build**: ESLint, Prettier check, TypeScript, production build
-2. **Browser tests**: Playwright on a desktop and a phone profile, including an axe accessibility scan of every page
+2. **Browser tests**: Playwright on a desktop and a phone profile. They cover the booking form, photo viewers, gallery, FAQ, menus and links, plus an axe accessibility scan of every page
 
-Work happens on `master`. Each phase of work goes into `main` through a pull request once CI is green.
+Work happens on `master`. Each phase goes into `main` through a pull request once CI is green, and Vercel deploys `main`.
 
-## Before going live
+## Performance notes
 
-Deployment has not been set up yet. When it is time:
+Measured with Chrome's CPU slowed four times: the hero paints at about one second, and scrolling the whole page produces no long main-thread tasks. Lighthouse run against `localhost` reports a slower simulated LCP than real Chrome does. Locally all the JavaScript finishes before first paint, and Lighthouse's simulation then counts it towards LCP. Measure the deployed site for representative numbers.
 
-1. Import the GitHub repository in Vercel. The Next.js preset needs no changes.
-2. Set `NEXT_PUBLIC_SITE_URL` to the production address, first the `.vercel.app` URL and later the custom domain.
-3. Vercel's Hobby plan is for personal, non-commercial use, so a commercial resort site needs a plan that permits it. Check [Vercel's pricing and terms](https://vercel.com/pricing) at the time of deploying.
-4. After the domain is connected, submit `/sitemap.xml` in Google Search Console, and make sure the Google Business Profile has the same name, phone number and map pin as the site.
+## Going live on a custom domain
 
-Preview deployments and local builds send `noindex` and a disallow-all `robots.txt` automatically, so only the production site is indexed.
+1. Connect the domain in the Vercel project.
+2. Set `NEXT_PUBLIC_SITE_URL` to it (no trailing slash). Until then, canonical links, the sitemap and social previews use the Vercel production URL automatically.
+3. Vercel's Hobby plan is for personal, non-commercial use, so a commercial resort site needs a plan that permits it. Check [Vercel's pricing and terms](https://vercel.com/pricing).
+4. Submit `/sitemap.xml` in Google Search Console, and keep the Google Business Profile's name, phone number and map pin identical to the site's.
+
+Preview deployments send `noindex` and a disallow-all `robots.txt`, so only production is indexed.
 
 ## Still needed from the owner
 
-- **Google review link.** Set `NEXT_PUBLIC_GOOGLE_REVIEW_URL` and a "Write a review" link appears. Until then, the site links to the Google Maps listing and shows no reviews or ratings.
-- **Logo approval.** The redrawn mark follows the original concept in new colours.
-- **Postal address line.** Optional. Set `postalAddress` in `src/data/resort.ts` to show it beside the map link.
+- **Photos of the rain dance, restaurant, conference hall and a daytime pool.** These facilities are currently described without their own photographs.
+- **Postal address line.** Optional. Set `postalAddress` in `src/data/resort.ts` to show it in the contact section.
 - **Social links.** Add them to `socialLinks` in `src/data/resort.ts`. Nothing is shown while the list is empty.
-- **Room 102.** The handwritten room sheet lists it at ₹1,600 for a two-person Non-AC room, while the confirmed category rate is ₹1,500. The site uses ₹1,500 and shows no individual room numbers. Confirm before publishing any room-by-room list.
-- **Nearby pin names.** Check the four destination labels against their Google Maps pins. No distances or drive times are shown until they are measured from a route source.
+- **Nearby pin names.** Srisailam Dam View Point, the Amrabad safari gate and Octopus View Point have not been checked against their Google Maps pins yet. No distances or drive times are shown until they are measured from a route source.

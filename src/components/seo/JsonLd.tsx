@@ -39,6 +39,7 @@ export function JsonLd() {
       { '@type': 'LocationFeatureSpecification', name: 'Conference hall', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Wi-Fi in rooms', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Parking', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Jungle safari (arranged)', value: true },
     ],
     containsPlace: ROOM_CATEGORIES.map((room) => ({
       '@type': 'HotelRoom',

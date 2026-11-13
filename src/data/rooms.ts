@@ -36,7 +36,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
       photos.twoAcBalconyLight,
       photos.twoHeadboard,
       photos.twoTowelSwan,
-      photos.guestRoomWoodenBed,
+      photos.doubleRoomWoodenBed,
       photos.twoBalconyDoor,
       photos.twoBalconySeating,
       photos.twoBalconyFields,
@@ -67,26 +67,6 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     ],
     whatsappMessage:
       'Hello Samisthi Aranya Resorts, I would like to enquire about the Four-Person Room (AC ₹4,000 / Non-AC ₹2,500 per 24-hour stay).',
-  },
-  {
-    id: 'six-person',
-    name: 'Six-Person Room',
-    suits: 'Larger families and friend groups',
-    guests: 6,
-    count: 2,
-    acRate: 6000,
-    nonAcRate: 3500,
-    summary:
-      'Our largest room, with a multi-bed layout for up to six guests and a covered balcony terrace to share.',
-    features: [
-      'Multi-bed layout',
-      'Covered balcony terrace',
-      'Television and Wi-Fi',
-      'AC or Non-AC',
-    ],
-    photos: [photos.sixMultiBed, photos.sixBalcony],
-    whatsappMessage:
-      'Hello Samisthi Aranya Resorts, I would like to enquire about the Six-Person Room (AC ₹6,000 / Non-AC ₹3,500 per 24-hour stay).',
   },
   {
     id: 'suite',

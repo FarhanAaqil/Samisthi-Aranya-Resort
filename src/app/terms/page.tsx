@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms and stay conditions" updated="10 November 2026">
+    <LegalPage title="Terms and stay conditions" updated="12 November 2026">
       <p>
         These are the basic conditions for staying at {RESORT.name}. The resort team will happily
         talk you through anything here when you call.
@@ -24,8 +24,8 @@ export default function TermsPage() {
           Check-in is at {RESORT.stay.checkIn}. Check-out is at {RESORT.stay.checkOut}.
         </li>
         <li>
-          The pool and rain dance are included in the room tariff. Food and drinks are charged
-          separately.
+          The pool and rain dance are included in the room tariff. Food, drinks and the jungle
+          safari are charged separately.
         </li>
       </ul>
 
@@ -44,6 +44,10 @@ export default function TermsPage() {
       <h2>On the property</h2>
       <ul>
         <li>The restaurant is vegetarian only.</li>
+        <li>
+          Jungle safaris into the Amrabad Tiger Reserve are arranged by the resort and paid
+          separately. Safari timings and access follow the forest department&apos;s rules.
+        </li>
         <li>
           A campfire can be arranged on request for special occasions. It is not a scheduled daily
           activity.

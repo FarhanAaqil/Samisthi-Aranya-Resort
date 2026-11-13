@@ -1,20 +1,27 @@
 import { cn } from '@/lib/cn';
 
-type Variant = 'primary' | 'secondary' | 'soft' | 'light' | 'outlineLight';
+type Variant = 'primary' | 'secondary';
 type Size = 'md' | 'lg';
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-wine text-petal shadow-soft hover:bg-wine-deep',
-  secondary: 'border border-wine/60 text-wine hover:border-wine hover:bg-wine/8',
-  soft: 'bg-rose-soft text-wine-deep hover:bg-rose',
-  light: 'bg-petal text-wine-deep hover:bg-rose-soft',
-  outlineLight: 'text-petal ring-1 ring-petal/50 hover:bg-petal/12',
+  /** Solid brass: the main call to action. */
+  primary: 'bg-brass text-bark hover:bg-brass-light',
+  /** Hairline cream outline. */
+  secondary: 'border border-cream/45 text-cream hover:border-brass hover:text-brass-light',
 };
 
 const sizes: Record<Size, string> = {
-  md: 'h-11 px-5 text-sm',
-  lg: 'h-13 px-7 text-[0.95rem]',
+  md: 'h-11 px-6 text-[0.68rem]',
+  lg: 'h-13 px-8 text-[0.7rem]',
 };
+
+export const buttonClasses = (variant: Variant = 'primary', size: Size = 'md') =>
+  cn(
+    'inline-flex items-center justify-center gap-2.5 font-medium tracking-[0.28em] whitespace-nowrap uppercase',
+    'transition-colors duration-300 motion-reduce:transition-none',
+    variants[variant],
+    sizes[size],
+  );
 
 interface ButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: Variant;
@@ -23,7 +30,7 @@ interface ButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   external?: boolean;
 }
 
-/** Link styled as a button. Every call to action on the site is a link: tel, WhatsApp, anchor or map. */
+/** Link styled as a button. Calls to action are links: tel, WhatsApp, anchor or map. */
 export function Button({
   variant = 'primary',
   size = 'md',
@@ -34,13 +41,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <a
-      className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-wide whitespace-nowrap',
-        'transition-colors duration-300 motion-reduce:transition-none',
-        variants[variant],
-        sizes[size],
-        className,
-      )}
+      className={cn(buttonClasses(variant, size), className)}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       {...rest}
     >
