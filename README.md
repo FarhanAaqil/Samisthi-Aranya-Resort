@@ -42,17 +42,18 @@ The first time you run the browser tests, install the browser with `npx playwrig
 
 Everything a guest reads lives in `src/data/`, so details can change without touching the components.
 
-| File            | Holds                                                                                      |
-| --------------- | ------------------------------------------------------------------------------------------ |
-| `resort.ts`     | Name, taglines, phone and WhatsApp, WhatsApp messages, map link, stay times, event pricing |
-| `rooms.ts`      | Room categories, counts, AC and Non-AC rates, descriptions and photos                      |
-| `facilities.ts` | Pool, lawns, safari, rain dance, restaurant and the other facilities                       |
-| `nearby.ts`     | Nearby places and their directions links                                                   |
-| `faq.ts`        | Questions and answers. Rates and totals are pulled in from `rooms.ts`                      |
-| `gallery.ts`    | Which photos appear in the gallery, in order                                               |
-| `photos.ts`     | Every photograph with its alt text and caption                                             |
+| File            | Holds                                                                                        |
+| --------------- | -------------------------------------------------------------------------------------------- |
+| `resort.ts`     | Name, taglines, phone and WhatsApp, WhatsApp messages, map link, stay times, event pricing   |
+| `rooms.ts`      | Room categories, counts, AC and Non-AC rates, descriptions and photos                        |
+| `facilities.ts` | Pool, lawns, safari, rain dance, restaurant and the other facilities                         |
+| `nearby.ts`     | Nearby places and their directions links                                                     |
+| `faq.ts`        | Questions and answers. Rates and totals are pulled in from `rooms.ts`                        |
+| `gallery.ts`    | Which photos appear in the gallery, in order                                                 |
+| `highlights.ts` | The 'Made for gathering' tiles: corporate, get-togethers, events, play area, family, gardens |
+| `photos.ts`     | Every photograph with its alt text and caption                                               |
 
-Totals such as **21 rooms** and **56 guests** are calculated from the room list, so they can't drift out of date. The room types offered in the availability form come from `rooms.ts` too.
+The resort-wide totals, **24 rooms** for up to **68 guests**, are the owner's figures and live in `rooms.ts` as `TOTAL_ROOMS` and `TOTAL_GUESTS`. The number of rooms in each category is deliberately not published. The room types offered in the availability form come from `rooms.ts` too.
 
 To add a photo, resize it to about 2000px on the long edge, strip its location metadata, and put it in `src/assets/photos/`. Import it in `photos.ts` with a description for the alt text, then reference it where it belongs. Images imported this way get their dimensions and a blur placeholder automatically, and Next serves them as AVIF or WebP at the right size.
 

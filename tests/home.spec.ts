@@ -109,7 +109,33 @@ test.describe('home page', () => {
     await expect(twoPerson.locator('dd').nth(0)).toHaveText('₹2,500');
     await expect(twoPerson.locator('dd').nth(1)).toHaveText('₹1,500');
     await expect(page.locator('#rooms article')).toHaveCount(3);
-    await expect(page.locator('#rooms')).toContainText('21 rooms for up to 56 guests');
+    await expect(page.locator('#rooms')).toContainText('24 rooms for up to 68 guests');
+  });
+
+  test('room cards show rates but never per-category room counts', async ({ page }) => {
+    await page.goto('/#rooms');
+    const cards = page.locator('#rooms article');
+    await expect(cards).toHaveCount(3);
+    for (const card of await cards.all()) {
+      await expect(card).not.toContainText(/\b\d+\s+rooms?\b/i);
+    }
+  });
+
+  test('the highlights cover every kind of gathering', async ({ page }) => {
+    await page.goto('/#highlights');
+    const tiles = page.locator('#highlights li');
+    await expect(tiles).toHaveCount(7);
+    for (const title of [
+      'Corporate gatherings',
+      'Get-together programmes',
+      'Events and functions',
+      'A play area',
+      'Family gatherings',
+      'A spacious resort',
+      'Open gardens',
+    ]) {
+      await expect(page.locator('#highlights')).toContainText(title);
+    }
   });
 
   test('room photo viewer opens, steps with the arrow keys and returns focus', async ({

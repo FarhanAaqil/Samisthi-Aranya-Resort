@@ -10,7 +10,7 @@ import { whatsappHref } from '@/lib/links';
 /** The jungle safari and the places nearby, on one forest-green band. */
 export function Explore() {
   return (
-    <Section id="explore" tone="deep">
+    <Section id="explore" tone="olive">
       <div className="grid gap-16 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-5">
           <SectionHeading

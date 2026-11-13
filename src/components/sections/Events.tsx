@@ -11,7 +11,7 @@ import { telHref, whatsappHref } from '@/lib/links';
 
 export function Events() {
   return (
-    <Section id="events" tone="deep">
+    <Section id="events" tone="olive">
       <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-14">
         <div className="lg:order-2 lg:col-span-6">
           <SectionHeading

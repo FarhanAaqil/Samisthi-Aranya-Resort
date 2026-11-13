@@ -10,7 +10,7 @@ import { RoomPhotos } from './RoomPhotos';
 
 export function Rooms() {
   return (
-    <Section id="rooms" tone="deep">
+    <Section id="rooms" tone="olive">
       <SectionHeading
         align="center"
         eyebrow="Stay"
@@ -30,9 +30,7 @@ export function Rooms() {
             </div>
 
             <div className="lg:col-span-5">
-              <p className="caps text-brass-light">
-                {room.suits} · {room.count} {room.count === 1 ? 'room' : 'rooms'}
-              </p>
+              <p className="caps text-brass-light">{room.suits}</p>
               <h3 className="mt-4 font-display text-[2.4rem] leading-tight">{room.name}</h3>
               <p className="mt-4 max-w-md text-[1.05rem] leading-[1.85] text-cream-soft">
                 {room.summary}
