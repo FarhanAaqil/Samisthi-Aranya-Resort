@@ -1,16 +1,16 @@
-import { ChevronDown } from 'lucide-react';
 import { getImageProps } from 'next/image';
 
 import { BookingButton } from '@/components/booking/BookingButton';
+import { BookingForm } from '@/components/booking/BookingForm';
 import { Weather } from '@/components/Weather';
-import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { photos } from '@/data/photos';
 import { RESORT } from '@/data/resort';
 
 /**
- * Full-screen opening photograph. Phones get the portrait shot of the main building and larger
- * screens the golden-hour landscape, through one <picture> so only the right file downloads.
+ * The opening photograph, shown as it is, with no tint. Phones get the portrait of the main
+ * building and larger screens the golden-hour landscape, through one <picture> so only the right
+ * file downloads.
  */
 function HeroImage() {
   const shared = { alt: photos.lawnGoldenHour.alt, sizes: '100vw', fill: true } as const;
@@ -30,7 +30,7 @@ function HeroImage() {
         alt={photos.lawnGoldenHour.alt}
         loading="eager"
         fetchPriority="high"
-        className="object-cover object-[50%_60%] md:object-[50%_45%]"
+        className="object-cover object-[50%_60%] md:object-[50%_55%]"
       />
     </picture>
   );
@@ -38,58 +38,44 @@ function HeroImage() {
 
 export function Hero() {
   return (
-    <section
-      id="home"
-      className="on-dark relative flex min-h-[100svh] items-end overflow-hidden bg-forest-deep text-ivory"
-    >
-      <HeroImage />
-      {/* Shade the photograph enough for the type to read, darkest where the words sit. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-forest-deep/95 via-forest-deep/45 to-forest-deep/30"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-forest-deep/70 via-forest-deep/25 to-transparent"
-      />
-
-      <Container size="wide" className="relative pt-36 pb-16 sm:pb-20 lg:pb-24">
-        <div className="max-w-3xl">
-          <h1>
-            <span className="eyebrow flex items-center gap-4 text-gold-light">
-              <span aria-hidden="true" className="rule bg-gold-light" />
-              {RESORT.name}
-            </span>{' '}
-            <span className="mt-6 block font-display text-[3.4rem] leading-[0.98] font-medium sm:text-[5rem] lg:text-[6.5rem]">
-              {RESORT.motto}
-            </span>
-          </h1>
-          <p className="mt-5 font-display text-2xl text-gold-light italic sm:text-3xl">
-            {RESORT.tagline}
-          </p>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed font-light text-ivory/85">
-            Green lawns, a pool that never closes and jungle safaris into the Amrabad Tiger Reserve,
-            at the edge of the Nallamala forest near Mannanur.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <BookingButton variant="gold" size="lg">
-              Check availability
-            </BookingButton>
-            <Button href="#resort" variant="outlineLight" size="lg">
-              Discover the resort
-            </Button>
-          </div>
+    <section id="home" className="bg-olive pt-[5.25rem] text-cream lg:pt-[7.5rem]">
+      <div className="relative">
+        <div className="relative h-[58svh] max-h-[46rem] min-h-[22rem] bg-olive-deep lg:h-[70svh]">
+          <HeroImage />
         </div>
 
-        <div className="mt-14 flex flex-wrap items-end justify-between gap-6 border-t border-ivory/15 pt-6">
-          <Weather />
-          <a
-            href="#resort"
-            className="eyebrow inline-flex items-center gap-2 text-ivory/80 hover:text-ivory max-sm:hidden"
-          >
-            Scroll
-            <ChevronDown className="size-4 motion-safe:animate-bounce" aria-hidden="true" />
+        {/* On large screens the availability form rests on the photograph's lower edge. */}
+        <div className="absolute inset-x-0 bottom-0 hidden translate-y-1/2 lg:block">
+          <div className="relative mx-auto w-[min(92%,68rem)] border border-brass/25 bg-olive-deep px-8 py-5 shadow-lift">
+            <BookingForm layout="bar" label="Check availability for your dates" />
+          </div>
+        </div>
+      </div>
+
+      <Container className="pt-16 pb-24 text-center lg:pt-32 lg:pb-28">
+        <h1>
+          <span className="caps block text-brass-light">{RESORT.name}</span>{' '}
+          <span className="mt-6 block font-display text-[3.2rem] leading-[1] font-normal text-balance sm:text-[4.6rem] lg:text-[5.8rem]">
+            Breathe <em className="italic">Nallamala</em>
+          </span>
+        </h1>
+        <p className="caps mt-6 text-cream">{RESORT.tagline.replace(/\.$/, '')}</p>
+        <div className="ornament mt-8" aria-hidden="true">
+          <i />
+        </div>
+        <p className="mx-auto mt-8 max-w-[58ch] text-[1.08rem] leading-[1.85] text-cream-soft">
+          A private retreat on the edge of the Nallamala forest near Mannanur. Wide lawns that turn
+          gold every evening, a pool open around the clock, and jungle safaris into the Amrabad
+          Tiger Reserve.
+        </p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+          <BookingButton size="lg">Check availability</BookingButton>
+          <a href="#resort" className="caps text-link text-cream">
+            Discover the resort
           </a>
+        </div>
+        <div className="mt-12 flex justify-center">
+          <Weather />
         </div>
       </Container>
     </section>

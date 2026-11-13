@@ -24,8 +24,8 @@ function describe(code: number): string {
 }
 
 /**
- * Current conditions at the resort, shown over the hero photograph. Loaded once the browser is
- * idle so it never competes with the hero image, and it shows nothing if the service is down.
+ * Current conditions at the resort. Loaded once the browser is idle so it never competes with the
+ * hero image, and it shows nothing if the service is down.
  */
 export function Weather() {
   const [state, setState] = useState<WeatherState>({ status: 'loading' });
@@ -71,20 +71,20 @@ export function Weather() {
   }, []);
 
   return (
-    <div className="min-h-6 text-sm text-ivory/85" aria-live="polite">
+    <div className="min-h-6 text-sm text-cream-soft" aria-live="polite">
       {state.status === 'ready' && (
-        <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <CloudSun className="size-4 text-gold-light" aria-hidden="true" />
+        <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+          <CloudSun className="size-4 text-brass" aria-hidden="true" />
           <span>
             At the resort now:{' '}
-            <strong className="font-medium text-ivory">{state.temperature}°C</strong>,{' '}
+            <strong className="font-normal text-cream">{state.temperature}°C</strong>,{' '}
             {state.condition.toLowerCase()}
           </span>
           <a
             href="https://open-meteo.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-ivory/80 underline decoration-ivory/40 underline-offset-2 hover:text-ivory"
+            className="text-xs text-cream-soft underline decoration-brass/60 underline-offset-2 hover:text-cream"
           >
             Open-Meteo
           </a>

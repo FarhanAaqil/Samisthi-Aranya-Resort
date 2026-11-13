@@ -12,17 +12,28 @@ const facts = [
 
 export function ResortIntro() {
   return (
-    <Section id="resort" tone="ivory">
-      <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-12">
+    <Section id="resort" tone="olive" className="border-t border-cream/12">
+      <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-[1.15fr_1fr] items-end gap-4 lg:col-span-6" data-reveal>
+          <Picture
+            photo={photos.grandStaircase}
+            sizes="(min-width: 1024px) 26vw, 50vw"
+            className="aspect-[3/4]"
+          />
+          <Picture
+            photo={photos.corridorCourtyard}
+            sizes="(min-width: 1024px) 22vw, 45vw"
+            className="mb-14 aspect-[4/5]"
+            imageClassName="object-[40%_50%]"
+          />
+        </div>
+
         <div className="lg:col-span-6" data-reveal>
-          <p className="eyebrow flex items-center gap-4 text-gold-deep">
-            <span aria-hidden="true" className="rule" />
-            The resort
-          </p>
-          <h2 className="mt-6 font-display text-[2.6rem] leading-[1.06] font-medium text-balance text-forest sm:text-[3.4rem]">
+          <p className="caps text-brass-light">The resort</p>
+          <h2 className="mt-5 font-display text-[2.5rem] leading-[1.08] text-balance sm:text-[3.3rem]">
             Where the road to Srisailam meets the forest
           </h2>
-          <div className="mt-8 max-w-xl space-y-5 text-lg leading-relaxed font-light text-ink-soft">
+          <div className="mt-8 max-w-xl space-y-5 text-[1.05rem] leading-[1.85] text-cream-soft">
             <p>
               Samisthi Aranya sits among open skies and low hills near Mannanur, on the edge of the
               Nallamala forest. Wide verandahs look over a green courtyard, balconies face the
@@ -34,32 +45,20 @@ export function ResortIntro() {
               first call to check-out.
             </p>
           </div>
-        </div>
-
-        <div className="relative lg:col-span-6" data-reveal>
-          <Picture
-            photo={photos.walkwaySunset}
-            sizes="(min-width: 1024px) 34vw, 90vw"
-            className="ml-auto aspect-[4/5] w-full max-w-[30rem]"
-          />
-          <div className="absolute -bottom-12 left-0 w-[40%] max-w-[14rem] border-[10px] border-ivory max-lg:hidden">
-            <Picture
-              photo={photos.entrancePorch}
-              sizes="(min-width: 1024px) 14rem, 40vw"
-              className="aspect-[3/4]"
-            />
-          </div>
+          <a href="#gallery" className="caps text-link mt-9">
+            See the resort in photos
+          </a>
         </div>
       </div>
 
-      <dl className="mt-24 grid grid-cols-2 border-t border-ink/12 lg:grid-cols-4" data-reveal>
+      <dl className="mt-24 grid grid-cols-2 border-t border-cream/15 lg:grid-cols-4" data-reveal>
         {facts.map(({ value, label }) => (
           <div
             key={label}
-            className="flex flex-col border-b border-ink/12 py-8 pr-5 pl-5 odd:border-r odd:pl-0 sm:px-8 lg:border-r lg:border-b-0 lg:first:pl-0 lg:last:border-r-0"
+            className="flex flex-col border-b border-cream/15 py-8 pr-5 pl-5 odd:border-r odd:pl-0 sm:px-8 lg:border-r lg:border-b-0 lg:first:pl-0 lg:last:border-r-0"
           >
-            <dt className="text-sm leading-snug text-ink-soft">{label}</dt>
-            <dd className="order-first mb-3 font-display text-[2.2rem] leading-none text-forest sm:text-[2.6rem]">
+            <dt className="text-sm leading-snug text-cream-soft">{label}</dt>
+            <dd className="order-first mb-3 font-display text-[2.1rem] leading-none text-brass-light sm:text-[2.5rem]">
               {value}
             </dd>
           </div>

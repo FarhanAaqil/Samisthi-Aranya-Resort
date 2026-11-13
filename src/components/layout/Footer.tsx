@@ -9,20 +9,20 @@ import { telHref, whatsappHref } from '@/lib/links';
 
 export function Footer() {
   return (
-    <footer className="on-dark bg-forest-deep text-ivory/80">
+    <footer className="bg-olive-night text-cream-soft">
       <Container className="py-20">
         <div className="grid items-start gap-14 md:grid-cols-12">
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <Badge
-              sizes="(min-width: 768px) 260px, 220px"
-              className="max-w-[220px] md:max-w-[260px]"
+              sizes="(min-width: 768px) 240px, 200px"
+              className="max-w-[200px] md:max-w-[240px]"
             />
           </div>
 
-          <div className="md:col-span-4">
-            <p className="font-display text-3xl leading-tight text-ivory">{RESORT.motto}</p>
-            <p className="mt-1 font-display text-xl text-gold-light italic">{RESORT.tagline}</p>
-            <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed font-light text-ivory/70">
+          <div className="md:col-span-4 md:col-start-5">
+            <p className="font-display text-3xl leading-tight text-cream">{RESORT.motto}</p>
+            <p className="caps mt-3 text-brass-light">{RESORT.tagline}</p>
+            <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed">
               A retreat on the edge of the Nallamala forest, in {RESORT.locality}. Every booking is
               confirmed personally by the resort team.
             </p>
@@ -30,14 +30,11 @@ export function Footer() {
 
           <div className="grid grid-cols-2 gap-10 md:col-span-4">
             <nav aria-label="Footer">
-              <h2 className="eyebrow text-gold-light">Explore</h2>
+              <h2 className="caps text-brass-light">Explore</h2>
               <ul className="mt-5 space-y-3 text-[0.95rem]">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href}>
-                    <Link
-                      href={`/${item.href}`}
-                      className="transition-colors hover:text-gold-light"
-                    >
+                    <Link href={`/${item.href}`} className="transition-colors hover:text-cream">
                       {item.label}
                     </Link>
                   </li>
@@ -45,14 +42,11 @@ export function Footer() {
               </ul>
             </nav>
             <div>
-              <h2 className="eyebrow text-gold-light">Reach us</h2>
+              <h2 className="caps text-brass-light">Reach us</h2>
               <ul className="mt-5 space-y-3 text-[0.95rem]">
                 <li>
-                  <a
-                    href={telHref}
-                    className="inline-flex items-center gap-2.5 hover:text-gold-light"
-                  >
-                    <Phone className="size-4 text-gold-light" aria-hidden="true" />
+                  <a href={telHref} className="inline-flex items-center gap-2.5 hover:text-cream">
+                    <Phone className="size-4 text-brass" aria-hidden="true" />
                     {RESORT.contact.phoneDisplay}
                   </a>
                 </li>
@@ -61,9 +55,9 @@ export function Footer() {
                     href={whatsappHref()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 hover:text-gold-light"
+                    className="inline-flex items-center gap-2.5 hover:text-cream"
                   >
-                    <MessageCircle className="size-4 text-gold-light" aria-hidden="true" />
+                    <MessageCircle className="size-4 text-brass" aria-hidden="true" />
                     WhatsApp
                   </a>
                 </li>
@@ -72,9 +66,9 @@ export function Footer() {
                     href={RESORT.maps.resortDirections}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 hover:text-gold-light"
+                    className="inline-flex items-center gap-2.5 hover:text-cream"
                   >
-                    <MapPin className="size-4 text-gold-light" aria-hidden="true" />
+                    <MapPin className="size-4 text-brass" aria-hidden="true" />
                     Directions
                   </a>
                 </li>
@@ -83,18 +77,18 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-ivory/12 pt-7 text-[0.8rem] text-ivory/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-4 border-t border-cream/12 pt-7 text-[0.8rem] sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {RESORT.name}
           </p>
           <ul className="flex gap-6">
             <li>
-              <Link href="/privacy" className="hover:text-gold-light">
+              <Link href="/privacy" className="hover:text-cream">
                 Privacy
               </Link>
             </li>
             <li>
-              <Link href="/terms" className="hover:text-gold-light">
+              <Link href="/terms" className="hover:text-cream">
                 Terms and stay conditions
               </Link>
             </li>

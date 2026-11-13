@@ -44,8 +44,9 @@ export const RESORT = {
     ],
   },
 
-  /** Set NEXT_PUBLIC_GOOGLE_REVIEW_URL once the owner has the write-a-review link. */
-  googleReviewUrl: process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL ?? '',
+  /** Google's write-a-review link for the resort. NEXT_PUBLIC_GOOGLE_REVIEW_URL overrides it. */
+  googleReviewUrl:
+    process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL || 'https://g.page/r/CZvWdC0fG1SoEAE/review',
 
   /** Leave empty until the owner confirms the postal line. */
   postalAddress: '',

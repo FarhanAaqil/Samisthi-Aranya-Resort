@@ -2,11 +2,9 @@ import { cn } from '@/lib/cn';
 
 interface SectionHeadingProps {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   lead?: string;
   align?: 'left' | 'center';
-  /** Use on forest sections so the eyebrow and text stay readable. */
-  onDark?: boolean;
   className?: string;
 }
 
@@ -15,38 +13,22 @@ export function SectionHeading({
   title,
   lead,
   align = 'left',
-  onDark,
   className,
 }: SectionHeadingProps) {
   const centered = align === 'center';
   return (
     <header className={cn('max-w-2xl', centered && 'mx-auto text-center', className)} data-reveal>
-      <p
-        className={cn(
-          'eyebrow flex items-center gap-4',
-          onDark ? 'text-gold-light' : 'text-gold-deep',
-          centered && 'justify-center',
-        )}
-      >
-        <span aria-hidden="true" className="rule" />
-        {eyebrow}
-        {centered && <span aria-hidden="true" className="rule" />}
-      </p>
-      <h2
-        className={cn(
-          'mt-6 font-display text-[2.6rem] leading-[1.06] font-medium text-balance sm:text-[3.4rem]',
-          onDark ? 'text-ivory' : 'text-forest',
-        )}
-      >
+      <p className="caps text-brass-light">{eyebrow}</p>
+      <h2 className="mt-5 font-display text-[2.5rem] leading-[1.08] font-normal text-balance text-cream sm:text-[3.3rem]">
         {title}
       </h2>
+      {centered && (
+        <div className="ornament mt-7" aria-hidden="true">
+          <i />
+        </div>
+      )}
       {lead && (
-        <p
-          className={cn(
-            'mt-6 text-lg leading-relaxed font-light text-pretty',
-            onDark ? 'text-ivory/80' : 'text-ink-soft',
-          )}
-        >
+        <p className={cn('mt-6 text-[1.05rem] leading-relaxed text-pretty text-cream-soft')}>
           {lead}
         </p>
       )}

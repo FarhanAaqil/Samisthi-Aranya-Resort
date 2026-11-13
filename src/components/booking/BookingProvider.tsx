@@ -65,12 +65,12 @@ function BookingDialog({ room, onClose }: { room: string; onClose: () => void })
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
-      className="m-auto max-h-[94vh] w-[min(94vw,40rem)] overflow-y-auto bg-ivory p-0 text-ink shadow-lift backdrop:bg-forest-deep/80"
+      className="m-auto max-h-[94vh] w-[min(94vw,40rem)] overflow-y-auto border border-brass/30 bg-olive-deep p-0 text-cream shadow-lift backdrop:bg-olive-night/85"
     >
-      <div className="flex items-start justify-between gap-6 border-b border-ink/10 px-6 py-5 sm:px-8">
+      <div className="flex items-start justify-between gap-6 border-b border-cream/12 px-6 py-5 sm:px-8">
         <div>
-          <p className="eyebrow text-gold-deep">Plan your stay</p>
-          <h2 id="booking-title" className="mt-2 font-display text-3xl font-medium text-forest">
+          <p className="caps text-brass-light">Plan your stay</p>
+          <h2 id="booking-title" className="mt-2 font-display text-3xl text-cream">
             Check availability
           </h2>
         </div>
@@ -78,7 +78,7 @@ function BookingDialog({ room, onClose }: { room: string; onClose: () => void })
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="grid size-11 shrink-0 place-items-center border border-ink/15 text-forest transition-colors hover:bg-forest hover:text-ivory"
+          className="grid size-11 shrink-0 place-items-center border border-cream/25 text-cream transition-colors hover:border-brass hover:text-brass-light"
         >
           <X className="size-5" aria-hidden="true" />
         </button>

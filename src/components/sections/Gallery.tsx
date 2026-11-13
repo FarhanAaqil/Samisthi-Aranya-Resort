@@ -12,7 +12,7 @@ import { cn } from '@/lib/cn';
 
 // The preview shows four photographs; the viewer holds the whole collection.
 const PREVIEW = [
-  { index: 0, className: 'col-span-2 row-span-2', sizes: '(min-width: 768px) 50vw, 100vw' },
+  { index: 7, className: 'col-span-2 row-span-2', sizes: '(min-width: 768px) 50vw, 100vw' },
   { index: 1, className: 'row-span-2', sizes: '(min-width: 768px) 25vw, 50vw' },
   { index: 3, className: '', sizes: '(min-width: 768px) 25vw, 50vw' },
   { index: 6, className: '', sizes: '(min-width: 768px) 25vw, 50vw' },
@@ -23,7 +23,7 @@ export function Gallery() {
   const total = GALLERY_ITEMS.length;
 
   return (
-    <Section id="gallery" tone="paper" containerSize="wide">
+    <Section id="gallery" tone="olive" containerSize="wide">
       <div className="flex flex-wrap items-end justify-between gap-8">
         <SectionHeading
           eyebrow="Gallery"
@@ -53,7 +53,7 @@ export function Gallery() {
                 type="button"
                 onClick={() => setOpenIndex(index)}
                 aria-label={last ? undefined : `Open photo: ${item.caption}`}
-                className="group relative block size-full overflow-hidden bg-stone"
+                className="group relative block size-full overflow-hidden bg-olive-deep"
               >
                 <Image
                   src={item.image}
@@ -64,12 +64,12 @@ export function Gallery() {
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
                 />
                 {last && (
-                  <span className="absolute inset-0 grid place-items-center bg-forest-deep/60 text-ivory transition-colors group-hover:bg-forest-deep/70">
+                  <span className="absolute inset-0 grid place-items-center bg-olive-night/60 text-cream transition-colors group-hover:bg-olive-night/75">
                     <span className="text-center">
                       <span className="block font-display text-4xl">
                         +{total - PREVIEW.length + 1}
                       </span>
-                      <span className="eyebrow mt-1 block text-[0.62rem]">More photos</span>
+                      <span className="caps mt-1 block text-[0.62rem]">More photos</span>
                       <span className="sr-only">, view all {total}</span>
                     </span>
                   </span>

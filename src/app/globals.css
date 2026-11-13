@@ -1,37 +1,32 @@
 @import 'tailwindcss';
 
 /*
- * Design tokens for Samisthi Aranya Resorts.
+ * Design tokens for Samisthi Aranya Resorts: Safari Olive & Brass.
  *
- * Forest green and antique gold, taken from the owner's badge, on an ivory canvas.
- * Contrast ratios (WCAG 2.1):
- *   ink on ivory 15.1 | ink-soft on ivory 6.9 | forest on ivory 12.1 | gold-deep on ivory 5.7
- *   ivory on forest 12.1 | gold-light on forest 7.3 | gold-light on forest-deep 9.1
- * Plain gold is for rules and icons only; it never carries text on the light canvas.
+ * The olive comes from the resort's own lawns and hills, the brass from the badge. Every surface
+ * is a rich olive ground with cream type. Contrast ratios (WCAG 2.1):
+ *   cream on olive 7.8 | cream on olive-deep 11.6 | cream-soft on olive 5.9
+ *   brass-light on olive 5.3 | brass-light on olive-deep 8.0 | bark on brass 7.4
  */
 @theme {
   --color-*: initial;
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  --color-ivory: #f6f2ea;
-  --color-paper: #fbf8f2;
-  --color-stone: #ece5d8;
-  --color-ink: #1f1d1a;
-  --color-ink-soft: #57524a;
-  --color-forest: #12351f;
-  --color-forest-deep: #08230f;
-  --color-forest-soft: #1f4a2e;
-  --color-gold: #b8913f;
-  --color-gold-light: #d8bc7a;
-  --color-gold-deep: #7a5a1c;
+  --color-olive: #4a4a22;
+  --color-olive-soft: #55552a;
+  --color-olive-deep: #2f2f15;
+  --color-olive-night: #23230f;
+  --color-cream: #f4ecd8;
+  --color-cream-soft: #d8cfb2;
+  --color-brass: #d9b25e;
+  --color-brass-light: #e2c27a;
+  --color-bark: #2a2810;
 
-  --font-display: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-display: var(--font-bodoni), 'Bodoni Moda', 'Didot', Georgia, serif;
   --font-sans: var(--font-jost), system-ui, sans-serif;
-  --font-caps: var(--font-cinzel), 'Cinzel', Georgia, serif;
 
-  --shadow-soft: 0 1px 2px rgb(8 35 15 / 0.06), 0 18px 40px -24px rgb(8 35 15 / 0.35);
-  --shadow-lift: 0 2px 6px rgb(8 35 15 / 0.08), 0 30px 60px -30px rgb(8 35 15 / 0.45);
+  --shadow-lift: 0 2px 6px rgb(0 0 0 / 0.18), 0 30px 60px -30px rgb(0 0 0 / 0.6);
 
   --ease-out-soft: cubic-bezier(0.22, 0.7, 0.2, 1);
 }
@@ -39,75 +34,102 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
-    background-color: var(--color-ivory);
-    color: var(--color-ink);
+    scroll-padding-top: 6rem;
+    background-color: var(--color-olive);
+    color: var(--color-cream);
+    color-scheme: dark;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--color-ivory);
-    color: var(--color-ink);
+    background-color: var(--color-olive-night);
+    color: var(--color-cream);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
-    line-height: 1.7;
+    font-weight: 300;
+    line-height: 1.75;
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: var(--color-gold-light);
-    color: var(--color-forest-deep);
+    background: var(--color-brass);
+    color: var(--color-bark);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-forest);
+    outline: 2px solid var(--color-brass-light);
     outline-offset: 3px;
-  }
-
-  .on-dark :focus-visible {
-    outline-color: var(--color-gold-light);
   }
 
   button,
   a {
     -webkit-tap-highlight-color: transparent;
   }
-
-  /* Native date pickers follow the surface they sit on. */
-  .on-dark input,
-  .on-dark select {
-    color-scheme: dark;
-  }
 }
 
 @layer components {
-  /* Small spaced capitals used for labels above headings. */
-  .eyebrow {
+  /* Small spaced capitals for labels, navigation and buttons. */
+  .caps {
     font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.3em;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
   }
 
-  /* A short gold rule that sits beside eyebrows and between blocks. */
-  .rule {
-    display: inline-block;
+  /* A short brass hairline with a diamond at its centre, used under centred headings. */
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    width: 4.5rem;
     height: 1px;
-    width: 2.5rem;
-    background: var(--color-gold);
+    background: var(--color-brass);
+  }
+
+  .ornament > i {
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--color-brass);
+    transform: rotate(45deg);
+  }
+
+  /* Bodoni's hairlines all but vanish at large sizes on a dark ground. Large figures such as the
+     phone number and prices use a smaller optical size, which keeps every stroke visible. */
+  .figures {
+    font-variation-settings: 'opsz' 14;
+    font-weight: 500;
+  }
+
+  /* An underlined text link in brass. */
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--color-brass);
+    padding-bottom: 0.3rem;
+    transition: color 300ms;
+  }
+
+  .text-link:hover {
+    color: var(--color-brass-light);
   }
 
   @media (pointer: fine) {
     * {
       scrollbar-width: thin;
-      scrollbar-color: var(--color-forest) var(--color-stone);
+      scrollbar-color: var(--color-brass) var(--color-olive-deep);
     }
   }
 
-  /* Below-the-fold elements fade in once; set up by the Reveal component. Short and subtle so a
-     section never looks empty after jumping to it from the menu. */
+  /* Below-the-fold elements fade in once; set up by the Reveal component. */
   .reveal-hidden {
     opacity: 0;
     transform: translate3d(0, 12px, 0);

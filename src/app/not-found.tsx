@@ -11,16 +11,16 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main id="main" className="grid min-h-screen place-items-center pt-24 pb-16">
+    <main id="main" className="grid min-h-screen place-items-center bg-olive pt-32 pb-16">
       <Container size="narrow" className="text-center">
         <Wordmark />
-        <p className="mt-10 text-xs font-semibold tracking-[0.22em] text-gold-deep uppercase">
+        <p className="mt-10 text-xs font-semibold tracking-[0.22em] text-brass-light uppercase">
           Page not found
         </p>
-        <h1 className="mt-3 font-display text-4xl font-semibold text-balance text-forest sm:text-5xl">
+        <h1 className="mt-3 font-display text-4xl font-semibold text-balance text-cream sm:text-5xl">
           This path leads back to the resort
         </h1>
-        <p className="mx-auto mt-4 max-w-md text-ink-soft">
+        <p className="mx-auto mt-4 max-w-md text-cream-soft">
           The page you were looking for isn’t here. Everything about the resort, from rooms and
           tariffs to directions, is on the home page.
         </p>

@@ -1,28 +1,23 @@
 import { cn } from '@/lib/cn';
 
-type Variant = 'primary' | 'secondary' | 'gold' | 'light' | 'outlineLight';
+type Variant = 'primary' | 'secondary';
 type Size = 'md' | 'lg';
 
 const variants: Record<Variant, string> = {
-  /** Forest on the ivory canvas. */
-  primary: 'bg-forest text-ivory hover:bg-forest-soft',
-  /** Hairline outline on the ivory canvas. */
-  secondary: 'border border-ink/30 text-ink hover:border-forest hover:bg-forest hover:text-ivory',
-  /** The main call to action on dark surfaces. */
-  gold: 'bg-gold-light text-forest-deep hover:bg-ivory',
-  light: 'bg-ivory text-forest-deep hover:bg-gold-light',
-  /** Hairline outline on dark surfaces. */
-  outlineLight: 'border border-ivory/45 text-ivory hover:border-ivory hover:bg-ivory/10',
+  /** Solid brass: the main call to action. */
+  primary: 'bg-brass text-bark hover:bg-brass-light',
+  /** Hairline cream outline. */
+  secondary: 'border border-cream/45 text-cream hover:border-brass hover:text-brass-light',
 };
 
 const sizes: Record<Size, string> = {
-  md: 'h-11 px-6 text-[0.72rem]',
-  lg: 'h-13 px-8 text-[0.75rem]',
+  md: 'h-11 px-6 text-[0.68rem]',
+  lg: 'h-13 px-8 text-[0.7rem]',
 };
 
 export const buttonClasses = (variant: Variant = 'primary', size: Size = 'md') =>
   cn(
-    'inline-flex items-center justify-center gap-2.5 font-medium tracking-[0.2em] whitespace-nowrap uppercase',
+    'inline-flex items-center justify-center gap-2.5 font-medium tracking-[0.28em] whitespace-nowrap uppercase',
     'transition-colors duration-300 motion-reduce:transition-none',
     variants[variant],
     sizes[size],

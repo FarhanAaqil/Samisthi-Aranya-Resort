@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Cinzel, Cormorant_Garamond, Jost } from 'next/font/google';
+import { Bodoni_Moda, Jost } from 'next/font/google';
 
 import { BookingBar } from '@/components/booking/BookingBar';
 import { BookingProvider } from '@/components/booking/BookingProvider';
@@ -15,24 +15,17 @@ import { getSiteUrl, isIndexable } from '@/lib/site';
 import './globals.css';
 
 // Variable fonts: one file per style covers every weight used on the page.
-const cormorant = Cormorant_Garamond({
+const bodoni = Bodoni_Moda({
   subsets: ['latin'],
   style: ['normal', 'italic'],
-  variable: '--font-cormorant',
+  axes: ['opsz'],
+  variable: '--font-bodoni',
   display: 'swap',
 });
 
 const jost = Jost({
   subsets: ['latin'],
   variable: '--font-jost',
-  display: 'swap',
-});
-
-// Only the wordmark uses Cinzel, so only the one weight is loaded.
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['600'],
-  variable: '--font-cinzel',
   display: 'swap',
 });
 
@@ -69,18 +62,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#08230f',
+  themeColor: '#4a4a22',
   width: 'device-width',
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable} ${cinzel.variable}`}>
+    <html lang="en" className={`${bodoni.variable} ${jost.variable}`}>
       <body className="pb-[calc(4rem+env(safe-area-inset-bottom))] font-sans antialiased lg:pb-[5.25rem]">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-forest focus:px-5 focus:py-3 focus:text-sm focus:text-ivory"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-brass focus:px-5 focus:py-3 focus:text-sm focus:text-bark"
         >
           Skip to content
         </a>

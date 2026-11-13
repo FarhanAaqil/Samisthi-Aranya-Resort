@@ -1,13 +1,11 @@
 import { cn } from '@/lib/cn';
 import { Container } from './Container';
 
-type Tone = 'ivory' | 'paper' | 'stone' | 'forest';
+type Tone = 'olive' | 'deep';
 
 const tones: Record<Tone, string> = {
-  ivory: 'bg-ivory text-ink',
-  paper: 'bg-paper text-ink',
-  stone: 'bg-stone text-ink',
-  forest: 'on-dark bg-forest text-ivory',
+  olive: 'bg-olive',
+  deep: 'bg-olive-deep',
 };
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
@@ -17,14 +15,14 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
 
 /** Page section with consistent vertical rhythm. The id doubles as the anchor target. */
 export function Section({
-  tone = 'ivory',
+  tone = 'olive',
   containerSize,
   className,
   children,
   ...rest
 }: SectionProps) {
   return (
-    <section className={cn('py-24 sm:py-32', tones[tone], className)} {...rest}>
+    <section className={cn('py-24 text-cream sm:py-32', tones[tone], className)} {...rest}>
       <Container size={containerSize}>{children}</Container>
     </section>
   );

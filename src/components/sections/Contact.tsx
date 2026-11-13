@@ -19,7 +19,7 @@ function OutLink({ href, children }: { href: string; children: React.ReactNode }
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="eyebrow inline-flex items-center gap-2 text-[0.65rem] text-forest underline decoration-gold underline-offset-[6px] hover:text-gold-deep"
+      className="caps inline-flex items-center gap-2 text-[0.65rem] text-cream underline decoration-brass underline-offset-[6px] hover:text-brass-light"
     >
       {children}
       <ArrowUpRight className="size-3.5" aria-hidden="true" />
@@ -32,7 +32,7 @@ export function Contact() {
   const { googleReviewUrl, postalAddress, socialLinks } = RESORT;
 
   return (
-    <Section id="contact" tone="paper">
+    <Section id="contact" tone="olive">
       <div className="grid gap-16 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-7">
           <SectionHeading
@@ -43,7 +43,7 @@ export function Contact() {
 
           <a
             href={telHref}
-            className="mt-10 block font-display text-[2.6rem] leading-none text-forest hover:text-forest-soft sm:text-[3.4rem]"
+            className="figures mt-10 block font-display text-[2.6rem] leading-none text-cream hover:text-brass-light sm:text-[3.4rem]"
             data-reveal
           >
             {RESORT.contact.phoneDisplay}
@@ -60,13 +60,13 @@ export function Contact() {
             </Button>
           </div>
 
-          <ol className="mt-14 border-t border-ink/15" data-reveal>
+          <ol className="mt-14 border-t border-cream/15" data-reveal>
             {steps.map((step, index) => (
-              <li key={step} className="flex gap-6 border-b border-ink/15 py-5">
-                <span className="font-display text-2xl leading-none text-gold-deep">
+              <li key={step} className="flex gap-6 border-b border-cream/15 py-5">
+                <span className="font-display text-2xl leading-none text-brass-light">
                   0{index + 1}
                 </span>
-                <span className="font-light text-ink-soft">{step}</span>
+                <span className="text-cream-soft">{step}</span>
               </li>
             ))}
           </ol>
@@ -74,8 +74,8 @@ export function Contact() {
 
         <div className="space-y-12 lg:col-span-4 lg:col-start-9 lg:pt-4">
           <div data-reveal>
-            <h3 className="eyebrow text-gold-deep">Find us</h3>
-            <p className="mt-4 font-display text-2xl leading-snug text-forest">
+            <h3 className="caps text-brass-light">Find us</h3>
+            <p className="mt-4 font-display text-2xl leading-snug text-cream">
               {postalAddress || RESORT.locality}
             </p>
             <div className="mt-4">
@@ -84,8 +84,8 @@ export function Contact() {
           </div>
 
           <div id="reviews" data-reveal>
-            <h3 className="eyebrow text-gold-deep">Guest reviews</h3>
-            <p className="mt-4 leading-relaxed font-light text-ink-soft">
+            <h3 className="caps text-brass-light">Guest reviews</h3>
+            <p className="mt-4 leading-relaxed text-cream-soft">
               Read what guests say about their stay on our Google Maps listing.
             </p>
             <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
@@ -95,8 +95,8 @@ export function Contact() {
           </div>
 
           <div data-reveal>
-            <h3 className="eyebrow text-gold-deep">Stay details</h3>
-            <p className="mt-4 leading-relaxed font-light text-ink-soft">
+            <h3 className="caps text-brass-light">Stay details</h3>
+            <p className="mt-4 leading-relaxed text-cream-soft">
               Check-in {RESORT.stay.checkIn}, check-out {RESORT.stay.checkOut}. Rates are per room
               for 24 hours, GST included. The pool and rain dance are part of your stay; food and
               the safari are charged separately.

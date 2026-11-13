@@ -4,34 +4,27 @@ import badge from '@/assets/brand/samisthi-aranya-badge.jpg';
 import { cn } from '@/lib/cn';
 
 interface WordmarkProps {
-  /** `light` sits on dark surfaces and over photographs. */
-  tone?: 'light' | 'dark';
   className?: string;
+  /** Smaller version for the compact header and phones. */
+  compact?: boolean;
 }
 
 /**
- * Text wordmark for the header and other small spaces. The full badge is too detailed to stay
- * legible at header size, so it is reserved for large placements.
+ * Text wordmark for the header. The full badge is too detailed to stay legible at header size,
+ * so it is shown large in the footer instead.
  */
-export function Wordmark({ tone = 'dark', className }: WordmarkProps) {
+export function Wordmark({ className, compact }: WordmarkProps) {
   return (
-    <span className={cn('inline-flex flex-col leading-none', className)}>
+    <span className={cn('inline-flex flex-col items-center leading-none', className)}>
       <span
         className={cn(
-          'font-caps text-[1.05rem] font-semibold tracking-[0.2em] sm:text-[1.2rem]',
-          tone === 'light' ? 'text-ivory' : 'text-forest',
+          'font-display font-normal tracking-[0.24em] text-cream',
+          compact ? 'text-[1.05rem] sm:text-[1.2rem]' : 'text-[1.2rem] sm:text-[1.55rem]',
         )}
       >
         SAMISTHI ARANYA
       </span>{' '}
-      <span
-        className={cn(
-          'mt-1.5 text-[0.56rem] font-medium tracking-[0.5em]',
-          tone === 'light' ? 'text-gold-light' : 'text-gold-deep',
-        )}
-      >
-        RESORTS · NALLAMALA
-      </span>
+      <span className="caps mt-2 text-[0.58rem] text-brass-light">Resorts</span>
     </span>
   );
 }
@@ -39,24 +32,21 @@ export function Wordmark({ tone = 'dark', className }: WordmarkProps) {
 interface BadgeProps {
   className?: string;
   sizes: string;
-  priority?: boolean;
 }
 
 /**
- * The owner's full badge. Its own background is the same deep forest as `bg-forest-deep`, and a
- * soft radial mask feathers the square edge, so place it on forest-deep surfaces only.
+ * The owner's full badge, shown as a framed crest. Its own deep-green background sits inside a
+ * brass hairline frame so it reads as a deliberate plaque on the olive ground.
  */
-export function Badge({ className, sizes, priority }: BadgeProps) {
+export function Badge({ className, sizes }: BadgeProps) {
   return (
-    <Image
-      src={badge}
-      alt="Samisthi Aranya Resorts badge: a tiger, a stag and forest hills above the words Breathe Nallamala"
-      sizes={sizes}
-      priority={priority}
-      className={cn(
-        'h-auto w-full [mask-image:radial-gradient(closest-side,#000_86%,transparent_100%)]',
-        className,
-      )}
-    />
+    <div className={cn('border border-brass/50 p-2', className)}>
+      <Image
+        src={badge}
+        alt="Samisthi Aranya Resorts badge: a tiger, a stag and forest hills above the words Breathe Nallamala"
+        sizes={sizes}
+        className="h-auto w-full"
+      />
+    </div>
   );
 }

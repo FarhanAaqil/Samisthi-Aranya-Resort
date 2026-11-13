@@ -9,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: `${RESORT.tagline} A nature retreat near Mannanur on the Srisailam highway.`,
     start_url: '/',
     display: 'browser',
-    background_color: '#f6f2ea',
-    theme_color: '#08230f',
+    background_color: '#4a4a22',
+    theme_color: '#4a4a22',
     icons: [{ src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' }],
   };
 }

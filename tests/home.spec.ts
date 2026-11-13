@@ -166,10 +166,7 @@ test.describe('home page', () => {
   test('a section reached from the menu is visible straight away', async ({ page, isMobile }) => {
     test.skip(isMobile, 'Uses the desktop navigation.');
     await page.goto('/');
-    await page
-      .getByRole('navigation', { name: 'Primary' })
-      .getByRole('link', { name: 'Celebrations' })
-      .click();
+    await page.getByRole('banner').getByRole('link', { name: 'Celebrations' }).click();
 
     const heading = page.locator('#events h2');
     await expect(heading).toBeInViewport();

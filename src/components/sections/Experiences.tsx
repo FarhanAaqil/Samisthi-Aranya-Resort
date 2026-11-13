@@ -9,7 +9,7 @@ export function Experiences() {
   const items = FACILITIES.filter((facility) => facility.id !== 'safari');
 
   return (
-    <Section id="experiences" tone="ivory">
+    <Section id="experiences" tone="olive">
       <div className="grid gap-16 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-5">
           <SectionHeading
@@ -38,13 +38,11 @@ export function Experiences() {
 
         <ul className="grid content-start gap-x-12 sm:grid-cols-2 lg:col-span-7 lg:pt-4">
           {items.map(({ id, icon: Icon, title, note, description }) => (
-            <li key={id} className="border-t border-ink/15 py-8" data-reveal>
-              <Icon className="size-6 text-gold" strokeWidth={1.4} aria-hidden="true" />
-              <h3 className="mt-4 font-display text-[1.6rem] leading-tight font-medium text-forest">
-                {title}
-              </h3>
-              <p className="eyebrow mt-2 text-[0.62rem] text-gold-deep">{note}</p>
-              <p className="mt-3 leading-relaxed font-light text-ink-soft">{description}</p>
+            <li key={id} className="border-t border-cream/15 py-8" data-reveal>
+              <Icon className="size-6 text-brass" strokeWidth={1.4} aria-hidden="true" />
+              <h3 className="mt-4 font-display text-[1.6rem] leading-tight text-cream">{title}</h3>
+              <p className="caps mt-2 text-[0.62rem] text-brass-light">{note}</p>
+              <p className="mt-3 leading-relaxed text-cream-soft">{description}</p>
             </li>
           ))}
         </ul>
