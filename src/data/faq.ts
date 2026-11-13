@@ -29,6 +29,12 @@ export const FAQS: FaqEntry[] = [
     answer: `Call or WhatsApp us on ${RESORT.contact.phoneDisplay}. The team checks availability for your dates and confirms your booking directly. There is no online booking or online payment on this website.`,
   },
   {
+    id: 'location',
+    question: 'Where is Samisthi Aranya Resorts?',
+    answer:
+      'Near Mannanur on the Hyderabad–Srisailam highway, in Nagarkurnool district of Telangana, at the edge of the Nallamala forest. The Amrabad Tiger Reserve and Srisailam are close by. Use the Google Maps directions link on this page for the exact route.',
+  },
+  {
     id: 'pool',
     question: 'Are the pool and rain dance included?',
     answer:

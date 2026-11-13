@@ -84,7 +84,8 @@ export const FACILITIES: Facility[] = [
     id: 'essentials',
     title: 'Everyday comforts',
     note: 'In every room and on site',
-    description: 'Wi-Fi and a television in the rooms, and on-site parking for your vehicle.',
+    description:
+      'Wi-Fi and a television in the rooms, forest-view balconies, and on-site parking for your vehicle.',
     icon: Wifi,
   },
 ];

@@ -25,8 +25,8 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     acRate: 2500,
     nonAcRate: 1500,
     summary:
-      'A quiet double room for two, with a comfortable bed and a balcony sit-out to watch the fields turn gold in the evening.',
-    features: ['Double bed', 'Balcony sit-out', 'Television and Wi-Fi', 'AC or Non-AC'],
+      'A calm, airy double room with a private forest-view balcony, made for slow mornings with tea and golden evenings over the Nallamala.',
+    features: ['Double bed', 'Forest-view balcony', 'Television and Wi-Fi', 'AC or Non-AC'],
     photos: [
       photos.twoAcDouble,
       photos.twoAcWide,
@@ -49,7 +49,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     acRate: 4000,
     nonAcRate: 2500,
     summary:
-      'Two double beds under one roof, so a family or four friends can stay together without squeezing in.',
+      'A bright, generous room with two double beds, so the whole family or four friends can stay together in comfort.',
     features: ['Two double beds', 'Television and Wi-Fi', 'Wardrobe and seating', 'AC or Non-AC'],
     photos: [
       photos.fourTwinBeds,
@@ -72,7 +72,7 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     acRate: 6000,
     nonAcRate: 5000,
     summary:
-      'A private living lounge with an L-shaped sofa opens into its own bedroom, for a stay that feels more like a home.',
+      'A private living lounge with an L-shaped sofa opens into its own bedroom: the most spacious and indulgent way to stay for two.',
     features: ['Separate living lounge', 'Private bedroom', 'Television and Wi-Fi', 'AC or Non-AC'],
     photos: [
       photos.suiteLounge,

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 import { BookingButton } from '@/components/booking/BookingButton';
 import { Container } from '@/components/ui/Container';
-import { Wordmark } from '@/components/ui/Logo';
+import { Logo } from '@/components/ui/Logo';
 import { NAV_ITEMS } from '@/data/nav';
 import { RESORT } from '@/data/resort';
 import { cn } from '@/lib/cn';
@@ -104,7 +104,7 @@ export function Header() {
         size="wide"
         className={cn(
           'grid grid-cols-[1fr_auto_1fr] items-center gap-6 transition-[height] duration-300',
-          scrolled ? 'h-[4.25rem]' : 'h-[5.25rem]',
+          scrolled ? 'h-[4.25rem]' : 'h-[5rem] lg:h-[6.25rem]',
         )}
       >
         <nav aria-label="Primary" className="flex items-center gap-8 max-xl:hidden">
@@ -126,7 +126,14 @@ export function Header() {
         </button>
 
         <Link href="/" className="justify-self-center">
-          <Wordmark compact={scrolled} />
+          <Logo
+            priority
+            sizes="96px"
+            className={cn(
+              'transition-[height] duration-300',
+              scrolled ? 'h-[3.6rem]' : 'h-[4.3rem] lg:h-[5.4rem]',
+            )}
+          />
         </Link>
 
         <div className="flex items-center justify-end gap-8">

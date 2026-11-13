@@ -31,18 +31,18 @@ export function ResortIntro() {
         <div className="lg:col-span-6" data-reveal>
           <p className="caps text-brass-light">The resort</p>
           <h2 className="mt-5 font-display text-[2.5rem] leading-[1.08] text-balance sm:text-[3.3rem]">
-            Where the road to Srisailam meets the forest
+            A forest resort near Srisailam and Mannanur
           </h2>
           <div className="mt-8 max-w-xl space-y-5 text-[1.05rem] leading-[1.85] text-cream-soft">
             <p>
-              Samisthi Aranya sits among open skies and low hills near Mannanur, on the edge of the
-              Nallamala forest. Wide verandahs look over a green courtyard, balconies face the
-              fields, and the lawn turns gold every evening.
+              Samisthi Aranya Resorts sits on the Hyderabad–Srisailam highway near Mannanur, at the
+              edge of the Nallamala forest. Forest-view balconies, wide verandahs over a green
+              courtyard and lawns that turn gold every evening make every stay feel unhurried.
             </p>
             <p>
-              Come for a quiet night with family, a celebration with friends, or a safari into the
-              Amrabad Tiger Reserve. The resort team looks after every booking personally, from the
-              first call to check-out.
+              Come for a quiet weekend with family, a celebration with friends, a team outing or a
+              jungle safari into the Amrabad Tiger Reserve. The resort team looks after every
+              booking personally, from the first call to check-out.
             </p>
           </div>
           <a href="#gallery" className="caps text-link mt-9">
