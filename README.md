@@ -10,7 +10,7 @@ It is one long page: the resort, rooms and rates, experiences, the jungle safari
 
 - [Next.js](https://nextjs.org) 16 (App Router), React 19 and TypeScript
 - [Tailwind CSS](https://tailwindcss.com) 4, with the design tokens in `src/app/globals.css`
-- `next/font` for Cormorant Garamond (headlines), Jost (text) and Cinzel (wordmark)
+- `next/font` for Bodoni Moda (headlines and wordmark) and Jost (text and spaced capitals)
 - [lucide-react](https://lucide.dev) icons
 - ESLint 9, Prettier, Playwright and axe-core for checks
 
@@ -58,28 +58,29 @@ To add a photo, resize it to about 2000px on the long edge, strip its location m
 
 ## Design
 
-The palette follows the owner's badge: forest green and antique gold on an ivory canvas, with sharp corners, hairline rules and generous space.
+**Safari Olive & Brass.** The colours were sampled from the resort's own photographs: the olive of its lawns and hills and the brass gold of its badge. Every surface is a rich olive ground with cream type. The layout follows luxury hotel sites: a centred wordmark between split navigation, an untinted hero photograph with the availability form resting on its edge, large alternating room rows, sharp corners, hairline rules and generous space.
 
-| Token         | Hex       | Used for                                                 |
-| ------------- | --------- | -------------------------------------------------------- |
-| `ivory`       | `#F6F2EA` | Page background                                          |
-| `paper`       | `#FBF8F2` | Alternate sections                                       |
-| `stone`       | `#ECE5D8` | Alternate sections, image placeholders                   |
-| `ink`         | `#1F1D1A` | Body text                                                |
-| `forest`      | `#12351F` | Headings, buttons, the safari band                       |
-| `forest-deep` | `#08230F` | Footer, booking bars; matches the badge's own background |
-| `gold`        | `#B8913F` | Rules and icons, never text on the light canvas          |
-| `gold-light`  | `#D8BC7A` | Accents and labels on dark surfaces                      |
-| `gold-deep`   | `#7A5A1C` | Small labels on the light canvas                         |
+| Token         | Hex       | Used for                                  |
+| ------------- | --------- | ----------------------------------------- |
+| `olive`       | `#4A4A22` | Main ground                               |
+| `olive-deep`  | `#2F2F15` | Alternate sections, booking bars, dialogs |
+| `olive-night` | `#23230F` | Footer                                    |
+| `cream`       | `#F4ECD8` | Text and headings                         |
+| `cream-soft`  | `#D8CFB2` | Secondary text                            |
+| `brass`       | `#D9B25E` | Buttons, rules, icons                     |
+| `brass-light` | `#E2C27A` | Labels and accents                        |
+| `bark`        | `#2A2810` | Text on brass buttons                     |
 
-Contrast ratios are noted next to the tokens in `globals.css`, and the axe scan in the test suite keeps them honest. The full badge (`src/assets/brand/`) appears in the footer, where a soft mask blends its square edge into the matching background; the header uses a text wordmark because the badge's detail is lost at small sizes.
+Contrast ratios are noted next to the tokens in `globals.css`, and the axe scan in the test suite keeps them honest. Large figures such as prices and the phone number use the `figures` class, which picks a sturdier optical size of Bodoni so its hairlines stay visible on the dark ground.
+
+The full badge (`src/assets/brand/`) appears in the footer as a framed crest; the header uses a text wordmark because the badge's detail is lost at small sizes.
 
 Motion is limited to short fade-ins and slow image zooms. Fade-ins start before a section arrives, and anything reached from the menu appears at once. Everything respects the reduced-motion setting.
 
 ## Booking flow
 
 - The **Check availability** buttons open a dialog with check-in, check-out, guests and room type.
-- On large screens the same form sits in a bar that slides up from the bottom once the visitor has scrolled past the first screen.
+- On large screens the same form rests on the edge of the hero photograph, and again in a bar that slides up from the bottom once the hero has scrolled away.
 - On phones a bar pinned to the bottom always offers **Call**, **WhatsApp** and **Book**.
 - Sending opens WhatsApp with a message such as _"I'd like to check availability for the Suite from 12 Dec 2026 to 13 Dec 2026 (1 night) for 2 guests."_ Nothing is stored or sent anywhere else.
 
@@ -107,7 +108,6 @@ Preview deployments send `noindex` and a disallow-all `robots.txt`, so only prod
 
 ## Still needed from the owner
 
-- **Google review link.** Set `NEXT_PUBLIC_GOOGLE_REVIEW_URL` and a "Write a review" link appears. Until then the site links to the Google Maps listing and shows no reviews or ratings.
 - **Photos of the rain dance, restaurant, conference hall and a daytime pool.** These facilities are currently described without their own photographs.
 - **Postal address line.** Optional. Set `postalAddress` in `src/data/resort.ts` to show it in the contact section.
 - **Social links.** Add them to `socialLinks` in `src/data/resort.ts`. Nothing is shown while the list is empty.
