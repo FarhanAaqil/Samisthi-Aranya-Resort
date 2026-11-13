@@ -223,6 +223,22 @@ test.describe('home page', () => {
   });
 });
 
+test('structured data describes the resort truthfully', async ({ page }) => {
+  await page.goto('/');
+  const blocks = await page
+    .locator('script[type="application/ld+json"]')
+    .evaluateAll((els) => els.map((el) => JSON.parse(el.textContent ?? '{}')));
+
+  const resort = blocks.find((b) => Array.isArray(b['@type']) && b['@type'].includes('Resort'));
+  expect(resort).toBeTruthy();
+  expect(resort.numberOfRooms).toBe(24);
+  expect(resort.telephone).toBe('+917981583940');
+  expect(JSON.stringify(blocks)).not.toMatch(/aggregateRating|reviewRating/);
+
+  const faq = blocks.find((b) => b['@type'] === 'FAQPage');
+  expect(faq.mainEntity.length).toBeGreaterThan(5);
+});
+
 test.describe('other pages', () => {
   test('privacy and terms pages render', async ({ page }) => {
     await page.goto('/privacy');

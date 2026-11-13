@@ -57,7 +57,7 @@ export const photos = {
   // Grounds and architecture
   lawnGoldenHour: {
     image: lawnGoldenHour,
-    alt: 'The two-storey main building of Samisthi Aranya Resorts across a wide green lawn in warm evening light',
+    alt: 'Samisthi Aranya Resorts near Mannanur on the Srisailam highway: the main building across a wide green lawn in warm evening light',
     caption: 'The main building and lawn at golden hour',
   },
   mainBuildingSky: {

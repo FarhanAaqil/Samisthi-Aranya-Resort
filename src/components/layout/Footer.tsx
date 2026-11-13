@@ -2,7 +2,7 @@ import { MapPin, MessageCircle, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 import { Container } from '@/components/ui/Container';
-import { Badge } from '@/components/ui/Logo';
+import { Logo } from '@/components/ui/Logo';
 import { NAV_ITEMS } from '@/data/nav';
 import { RESORT } from '@/data/resort';
 import { telHref, whatsappHref } from '@/lib/links';
@@ -13,10 +13,7 @@ export function Footer() {
       <Container className="py-20">
         <div className="grid items-start gap-14 md:grid-cols-12">
           <div className="md:col-span-3">
-            <Badge
-              sizes="(min-width: 768px) 240px, 200px"
-              className="max-w-[200px] md:max-w-[240px]"
-            />
+            <Logo sizes="(min-width: 768px) 240px, 200px" className="h-48 md:h-56" />
           </div>
 
           <div className="md:col-span-4 md:col-start-5">

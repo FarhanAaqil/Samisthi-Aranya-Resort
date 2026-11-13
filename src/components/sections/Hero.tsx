@@ -38,7 +38,7 @@ function HeroImage() {
 
 export function Hero() {
   return (
-    <section id="home" className="bg-olive pt-[5.25rem] text-cream lg:pt-[7.5rem]">
+    <section id="home" className="bg-olive pt-[5rem] text-cream lg:pt-[8.5rem]">
       <div className="relative">
         <div className="relative h-[58svh] max-h-[46rem] min-h-[22rem] bg-olive-deep lg:h-[70svh]">
           <HeroImage />
@@ -64,9 +64,9 @@ export function Hero() {
           <i />
         </div>
         <p className="mx-auto mt-8 max-w-[58ch] text-[1.08rem] leading-[1.85] text-cream-soft">
-          A private retreat on the edge of the Nallamala forest near Mannanur. Wide lawns that turn
-          gold every evening, a pool open around the clock, and jungle safaris into the Amrabad
-          Tiger Reserve.
+          Forest-view balconies, wide lawns that turn gold every evening, a pool open around the
+          clock and jungle safaris into the Amrabad Tiger Reserve. A private retreat near Mannanur
+          on the Hyderabad–Srisailam highway.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
           <BookingButton size="lg">Check availability</BookingButton>
