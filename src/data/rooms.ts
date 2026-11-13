@@ -7,8 +7,6 @@ export interface RoomCategory {
   suits: string;
   /** Guests the room is set up for. */
   guests: number;
-  /** Rooms of this kind on the property. Fixed count, not live availability. */
-  count: number;
   /** Per room, per 24 hours, GST included. */
   acRate: number;
   nonAcRate: number;
@@ -24,7 +22,6 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     name: 'Two-Person Room',
     suits: 'Couples and solo travellers',
     guests: 2,
-    count: 11,
     acRate: 2500,
     nonAcRate: 1500,
     summary:
@@ -49,7 +46,6 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     name: 'Four-Person Room',
     suits: 'Families and small groups',
     guests: 4,
-    count: 7,
     acRate: 4000,
     nonAcRate: 2500,
     summary:
@@ -73,7 +69,6 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
     name: 'Suite',
     suits: 'Couples who want more space',
     guests: 2,
-    count: 3,
     acRate: 6000,
     nonAcRate: 5000,
     summary:
@@ -90,9 +85,9 @@ export const ROOM_CATEGORIES: RoomCategory[] = [
   },
 ];
 
-/** Totals are derived so they can never drift from the categories above. */
-export const TOTAL_ROOMS = ROOM_CATEGORIES.reduce((sum, room) => sum + room.count, 0);
-export const TOTAL_GUESTS = ROOM_CATEGORIES.reduce(
-  (sum, room) => sum + room.count * room.guests,
-  0,
-);
+/**
+ * Resort-wide capacity as stated by the owner. Only these totals are published; the number of
+ * rooms in each category is deliberately not shown on the site.
+ */
+export const TOTAL_ROOMS = 24;
+export const TOTAL_GUESTS = 68;

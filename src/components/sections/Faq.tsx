@@ -7,7 +7,7 @@ import { FAQS } from '@/data/faq';
 /** Native <details> keeps answers readable without JavaScript and keyboard-friendly by default. */
 export function Faq() {
   return (
-    <Section id="faq" tone="olive">
+    <Section id="faq" tone="deep">
       <div className="grid gap-14 lg:grid-cols-12">
         <SectionHeading
           eyebrow="Good to know"

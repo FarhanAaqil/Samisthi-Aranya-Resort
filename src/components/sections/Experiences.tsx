@@ -9,7 +9,7 @@ export function Experiences() {
   const items = FACILITIES.filter((facility) => facility.id !== 'safari');
 
   return (
-    <Section id="experiences" tone="olive">
+    <Section id="experiences" tone="deep">
       <div className="grid gap-16 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-5">
           <SectionHeading

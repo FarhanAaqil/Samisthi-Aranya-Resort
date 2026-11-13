@@ -23,7 +23,7 @@ export function Gallery() {
   const total = GALLERY_ITEMS.length;
 
   return (
-    <Section id="gallery" tone="olive" containerSize="wide">
+    <Section id="gallery" tone="deep" containerSize="wide">
       <div className="flex flex-wrap items-end justify-between gap-8">
         <SectionHeading
           eyebrow="Gallery"
